@@ -9,7 +9,7 @@
 
 [Problem Statement Brainstorming](ProblemStatementBrainstorming.md "Problem Statement Brainstorming")
 
-## Customer <hr>
+## Customer
 
 ### **Description**
 
@@ -29,12 +29,10 @@ Occupation: College Student
 -  TBA
 
 ## Application type
-<hr>
 
 **Mobile App**
 
 ## Tech stack
-<hr>
 
 - TBA
 ### Client Tech
@@ -43,17 +41,15 @@ Occupation: College Student
 - TBA
 
 ## Top Application Capabilities
-<hr>
 
 - TBA
 
 ## Top Two to Three Scenarios
-<hr>
 
 [Scenarios](scenarios.md "List of Scenarios")
 
 ## Team Members
-<hr>    
+
 
 | Name | Role | Location |
 | --- | --- | --- |
@@ -64,7 +60,6 @@ Occupation: College Student
 | Sunny Patel | TBD | Chicago |
 
 ## Team Working Agreement
-<hr>
 
 * We will use Github and keep items updated as progress is made
 * If we need to meet ouside of class we will use the following tool / tech for meetings:
