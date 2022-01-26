@@ -31,11 +31,11 @@
 
 | Name | Role | Location |
 | --- | --- | --- |
-| Lucy Yang |   | Chicago |
-| Grace Daruny Sopha |   | Chicago |
-| Tommy Ton |   | Chicago  |
-| Enrique A. Budiono |   |  Chicago |
-| Sunny Patel |    |  Chicago |
+| Lucy Yang | TBD | Chicago |
+| Grace Daruny Sopha | TBD | Chicago |
+| Tommy Ton | TBD | Chicago |
+| Enrique A. Budiono | TBD |  Chicago |
+| Sunny Patel | TBD | Chicago |
 
 ## Team Working Agreement
 
