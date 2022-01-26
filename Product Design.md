@@ -75,10 +75,10 @@ Occupation: College Student
 * We will divide work fairly between each member. Each member will be responsible for the work they are assigned. (Assigned work will be within the member's skillset)
 
 # Scrum leader schedule:
-| Week | Name |
-| --- | --- |
-| 04 - 05 | Grace |
-| 06 - 07 | Enrique |
-| 08 - 09 | Lucy |
-| 10 - 11 | Sunny |
-| 12 - 13 | Tommy |
+| Week | Date | Name |
+| --- | --- | --- |
+| 04 - 05 | 02/01/2022 - 02/08/2022 | Grace |
+| 06 - 07 | 02/15/2022 - 02/22/2022 | Enrique |
+| 08 - 09 | 03/01/2022 - 03/08/2022 | Lucy |
+| 10 - 11 | 03/15/2022 - 03/22/2022 |Sunny |
+| 12 - 13 | 03/29/2022 - 04/05/2022 |Tommy |

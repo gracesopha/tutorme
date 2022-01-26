@@ -2,6 +2,8 @@
 
 ## Persona 1
 
+<img src="images/john_smith.jpg" alt="John Smith Image" style="height: 100px; width:100px;"/>
+
 ### **Name:**
 John Smith
 ### **Background:**
@@ -18,6 +20,8 @@ Aiming to catch up on course content after taking a course without much prior ex
 - Allows students at any level of expertise to find and offer help to other students
 
 ## Persona 2
+
+<img src="images/jane.jpg" alt="Jane Doe Image" style="height: 100px; width:100px;"/>
 
 ### **Name:** 
 Jane Doe
