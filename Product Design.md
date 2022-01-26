@@ -9,8 +9,7 @@
 
 [Problem Statement Brainstorming](ProblemStatementBrainstorming.md "Problem Statement Brainstorming")
 
-## Customer
-<hr>
+## Customer <hr>
 
 ### **Description**
 
