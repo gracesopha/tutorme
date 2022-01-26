@@ -13,12 +13,14 @@ John Smith
 ### **Goal:** 
 Aiming to catch up on course content after taking a course without much prior experience
 ### How can we help:
-- Enables students to easily 
-s
+- Enables students to easily search for other students who have mastered the material to offer tutoring services
+- Provides access to free online study resources that can help students with their studying
+- Allows students at any level of expertise to find and offer help to other students
+
 ## Persona 2
 
 ### **Name:** 
-John Doe
+Jane Doe
 ### **Background:**
 - Full-time graduate student at IIT majoring in Cybersecurity
 - Prior summer internship at IBM 
@@ -30,3 +32,5 @@ John Doe
 Look for a part-time job as a tutor to gain experience and add to their resume.
 
 ### How can we help:
+-Provide income to a student that provides a teaching service to their peers remotely
+-Provide a virtual environment that allows the student to  remotely tutor peers

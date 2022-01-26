@@ -5,3 +5,4 @@ Group Member:
 - Grace Daruny Sopha
 - Tommy Ton
 - Enrique Ardiean Budiono
+- Sunny Patel
