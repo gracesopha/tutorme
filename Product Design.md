@@ -1,27 +1,42 @@
 # Product Design Documentation
 
 ## Problem Statements
+<hr>
+
 1. Individuals who are looking for a tutor can find a student tutor to help them on their study with a specific major / topic to allow them to help each other in a less formal setting.
 
 2. A matchmaking app allows college students are able to register as tutors based off their level of expertise in a particular topic, while also having the ability to search for available tutors that can provide the necessary aid, allowing for quick, specialized help in a less formal setting.
 
-[Problem Statement Brainstorming](ProblemStatementBrainstorming.md)
+[Problem Statement Brainstorming](ProblemStatementBrainstorming.md "Problem Statement Brainstorming")
 
 ## Customer
+<hr>
 
-### Description
+### **Description**
 
-### Customer Persona
+College students looking for a tutor out of classes or College students looking to make extra money by tutoring
+
+### **Customer Demographic**
+
+Ages: 17-25 
+
+Occupation: College Student
+
+
+### **Customer Persona**
 [Customer Persona](persona.md "List of Persona")
 
 ### Other customer(s) or stakeholder(s)
 -  TBA
 
 ## Application type
+<hr>
 
-Mobile App
+**Mobile App**
 
-### Tech stack
+## Tech stack
+<hr>
+
 - TBA
 ### Client Tech
 - TBA
@@ -29,12 +44,17 @@ Mobile App
 - TBA
 
 ## Top Application Capabilities
+<hr>
+
 - TBA
 
 ## Top Two to Three Scenarios
+<hr>
+
 [Scenarios](scenarios.md "List of Scenarios")
 
 ## Team Members
+<hr>    
 
 | Name | Role | Location |
 | --- | --- | --- |
@@ -45,6 +65,7 @@ Mobile App
 | Sunny Patel | TBD | Chicago |
 
 ## Team Working Agreement
+<hr>
 
 * We will use Github and keep items updated as progress is made
 * If we need to meet ouside of class we will use the following tool / tech for meetings:
