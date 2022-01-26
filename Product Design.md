@@ -15,14 +15,21 @@
 ![Customer Persona](persona.md)
 
 ### Other customer(s) or stakeholder(s)
+-  TBA
 
-## Application type (Mobile App)
+## Application type
+
+Mobile App
 
 ### Tech stack
+- TBA
 ### Client Tech
+- TBA
 ### Server Tech
+- TBA
 
 ## Top Application Capabilities
+- TBA
 
 ## Top Two to Three Scenarios
 ![Scenarios](scenarios.md)
