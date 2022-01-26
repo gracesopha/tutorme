@@ -1,7 +1,7 @@
 # Product Design Documentation
 
 ## Problem Statements
-<hr>
+
 
 1. Individuals who are looking for a tutor can find a student tutor to help them on their study with a specific major / topic to allow them to help each other in a less formal setting.
 
