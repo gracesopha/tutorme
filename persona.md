@@ -2,7 +2,7 @@
 
 ## Persona 1
 
-<img src="images/john_smith.jpg" alt="John Smith Image" style="height: 100px; width:100px;"/>
+<img src="images/john_smith.jpg" alt="John Smith Image" title="John Smith" style="height: 100px; width:100px;"/>
 
 ### **Name:**
 John Smith
@@ -21,7 +21,7 @@ Aiming to catch up on course content after taking a course without much prior ex
 
 ## Persona 2
 
-<img src="images/jane.jpg" alt="Jane Doe Image" style="height: 100px; width:100px;"/>
+<img src="images/jane.jpg" title = "Jane Doe" alt="Jane Doe Image" style="height: 100px; width:100px;"/>
 
 ### **Name:** 
 Jane Doe
