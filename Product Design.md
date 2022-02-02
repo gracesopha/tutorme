@@ -26,30 +26,44 @@ Occupation: College Student
 [Customer Persona](persona.md "List of Persona")
 
 ### Other customer(s) or stakeholder(s)
--  TBA
+- Student
+- Tutor
 
 ## Application type
 
 **Mobile App**
 
 ## Tech stack
+| Name | Languages | Frameworks | Databases |
+| --- | --- | --- | --- |
+| Lucy Yang | Java, Python, HTML, CSS, JavaScript, C++, C | N/A | MySQL, PostgreSQL |
+| Grace Sopha | Python, JavaScript, HTML, CSS, Java | N/A | MySQL, JDBC |
+| Tommy Nhan Ton | Python, C++, C#, Java, JavaScript, HTML | tba | MySQL, PostgreSQL |
+| Enrique A. Budiono | Java, Python, Swift, HTML, CSS3, JavaScript, C++, C Programming, Perl, Awk, Bash, Next.js (only the basic) | Node.js | MySQL, HeidiSQL |
+| Sunny Patel | C++(improving), Python, Java, HTML5(learning), CSS3(learning), JavaScript(soon) | Node.js(soon) | PostgreSQL |
 
-- TBA
 ### Client Tech
-- TBA
+- Mobile application running on Android
+
 ### Server Tech
-- TBA
+- Java
+- JavaScript
+- MySQL Database
 
 ## Top Application Capabilities
 
-- TBA
+- Recomending a tutor to the student
+- Chatting System between the tutor and the student
+- Filtering system to filter the subject that the student want to search
+- Payment Methods System
+- Adding a reminder of the tutor session to a calendar service
+- Availability System for both tutor and student
 
 ## Top Two to Three Scenarios
 
 [Scenarios](scenarios.md "List of Scenarios")
 
 ## Team Members
-
 
 | Name | Role | Location |
 | --- | --- | --- |
