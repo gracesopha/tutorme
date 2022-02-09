@@ -21,7 +21,6 @@ Ages: 17-25
 
 Occupation: College Student
 
-
 ### **Customer Persona**
 [Customer Persona](persona.md "List of Persona")
 
@@ -40,7 +39,7 @@ Occupation: College Student
 | Grace Sopha | Python, JavaScript, HTML, CSS, Java | N/A | MySQL, JDBC |
 | Tommy Nhan Ton | Python, C++, C#, Java, JavaScript, HTML | tba | MySQL, PostgreSQL |
 | Enrique A. Budiono | Java, Python, Swift, HTML, CSS3, JavaScript, C++, C Programming, Perl, Awk, Bash, Next.js (only the basic) | Node.js | MySQL, HeidiSQL |
-| Sunny Patel | C++(improving), Python, Java, HTML5(learning), CSS3(learning), JavaScript(soon) | Node.js(soon) | PostgreSQL |
+| Sunny Patel | C++, Python, Java, HTML5(learning), CSS3(learning), JavaScript(soon) | Node.js(soon) | PostgreSQL |
 
 ### Client Tech
 - Mobile application running on Android
@@ -52,7 +51,7 @@ Occupation: College Student
 
 ## Top Application Capabilities
 
-- Recomending a tutor to the student
+- Reccomending a tutor to the student
 - Chatting System between the tutor and the student
 - Filtering system to filter the subject that the student want to search
 - Payment Methods System
