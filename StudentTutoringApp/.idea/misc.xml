@@ -6,12 +6,14 @@
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37864583333333335" />
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml" value="0.30687830687830686" />
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.3625" />
-        <entry key="..\:/School/Spring-2022/ipro-497/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.341" />
-        <entry key="..\:/School/Spring-2022/ipro-497/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.3875" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_resource.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/fragment_calendar.xml" value="0.38697916666666665" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
