@@ -7,12 +7,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionHelper {
-    Connection con;
     String user, pass, ip, port, database;
 
     public Connection connectionclass(){
 
-        ip="";
         pass="";
         ip="";
         port="";
@@ -20,12 +18,12 @@ public class ConnectionHelper {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Connection connection = null;
-        String ConnectionURL = null;
+        String ConnectionURL;
         try
         {
-            Class.forName("");
-            ConnectionURL = "jdbc:mysql://" + ip + "/" + port +";" + "databasename="+database+";user="+user+";password="+pass+";";
-            connection = DriverManager.getConnection(ConnectionURL);
+            Class.forName("com.mysql.jdbc.Driver");
+            ConnectionURL = "jdbc:mysql://" + ip + "/" + port +"/" +database;
+            connection = DriverManager.getConnection(ConnectionURL,user,pass);
         }
         catch (Exception ex){
             Log.e("Error",ex.getMessage());
