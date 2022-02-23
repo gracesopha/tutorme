@@ -12,4 +12,5 @@
         <item>Communications</item>
         <item>Other</item>
     </string-array>
+    <string name="sub_spinner">Select Your Subject</string>
 </resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_student"
+        android:name="com.example.studenttutoring.studentpage.StudentPage"
+        android:label="Home"
+        tools:layout="@layout/student_page_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_calendar"
+        android:name="com.example.studenttutoring.calendarpage.CalendarPage"
+        android:label="Calendar"
+        tools:layout="@layout/calendar_page_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_tutor"
+        android:name="com.example.studenttutoring.tutorpage.TutorPage"
+        android:label="Home"
+        tools:layout="@layout/tutor_page_fragment" />
+
+</navigation>
