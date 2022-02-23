@@ -13,12 +13,4 @@
         <item>Other</item>
     </string-array>
     <string name="sub_spinner">Select Your Subject</string>
-    <string name="welcome_name">Welcome, NAME!</string>
-    <string name="first_and_last_name">First and Last Name</string>
-    <string name="contact_number">Contact Number</string>
-    <string name="contact_number">Contact Number</string>
-    <string name="resume">Resume</string>
-    <string name="firstname_lastname">firstName, lastName</string>
-    <string name="e_mail">E-Mail</string>
-    <string name="emailaddress">emailAddress</string>
 </resources>
