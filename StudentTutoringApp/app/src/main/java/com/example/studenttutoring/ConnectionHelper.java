@@ -12,11 +12,11 @@ public class ConnectionHelper {
     String user, pass, ip, port, database;
 
     public Connection connectionclass(){
-        user="";
-        pass="";
-        ip="";
-        port="";
-        database="";
+        user="sql5473138";
+        pass="5fqPUtNQhn";
+        ip="54.84.79.252";
+        port="3306";
+        database="sql5473138";
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Connection connection = null;
