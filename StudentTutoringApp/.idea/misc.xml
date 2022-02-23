@@ -6,14 +6,13 @@
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37864583333333335" />
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml" value="0.30687830687830686" />
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.3625" />
-        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml" value="0.328042328042328" />
-        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.25" />
-        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.3582427536231884" />
-        <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.19635416666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
-        <entry key="app/src/main/res/layout/activity_signup_page.xml" value="0.19635416666666666" />
-        <entry key="app/src/main/res/layout/activity_tutor_page.xml" value="0.25" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_resource.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/fragment_calendar.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml" value="0.38697916666666665" />
       </map>
     </option>
   </component>
