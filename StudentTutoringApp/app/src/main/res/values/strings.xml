@@ -13,4 +13,11 @@
         <item>Other</item>
     </string-array>
     <string name="sub_spinner">Select Your Subject</string>
+    <string name="ratings_title_text_view">Leave a review!</string>
+    <string name="numerical_ratings_text_view">Numerical Rating</string>
+    <string name="numerical_ratings_input">Enter Input</string>
+    <string name="comments_text_view">Comments:</string>
+    <string name="comments_input">Enter Input</string>
+    <string name="submit_button">Submit</string>
+    <string name="cancel_button">Cancel</string>
 </resources>
