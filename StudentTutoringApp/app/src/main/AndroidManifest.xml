@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentTutoring">
         <activity
-            android:name=".TutorPage"
-            android:exported="false" />
-        <activity
             android:name=".SignupPage"
             android:exported="false" />
         <activity
