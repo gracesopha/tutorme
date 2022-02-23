@@ -1,8 +1,10 @@
 package com.example.studenttutoring;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +23,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loginButton = (Button) findViewById(R.id.loginButton);
+    }
+}
+
+/*
+loginButton = (Button) findViewById(R.id.loginButton);
         signupButton = (Button) findViewById(R.id.signUpButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openLoginPage() {
-        Intent intent = new Intent(this, LoginPage.class);
+        Intent intent = new Intent(this, TutorPageViewModel.class);
         startActivity(intent);
     }
 
@@ -48,4 +54,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignupPage.class);
         startActivity(intent);
     }
-}
+ */
