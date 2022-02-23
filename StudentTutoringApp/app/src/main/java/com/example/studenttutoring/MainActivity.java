@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.studenttutoring.studentpage.StudentPage;
+import com.example.studenttutoring.tutorpage.TutorPage;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -27,4 +30,15 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignupPage.class);
         startActivity(intent);
     }
+
+    public void openTutorPage() {
+        Intent intent = new Intent(this, TutorPage.class);
+        startActivity(intent);
+    }
+
+    public void openStudentPage() {
+        Intent intent = new Intent(this, StudentPage.class);
+        startActivity(intent);
+    }
+
 }
