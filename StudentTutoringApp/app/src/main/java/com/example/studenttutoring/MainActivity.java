@@ -1,6 +1,9 @@
 package com.example.studenttutoring;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 
 import android.content.Intent;
@@ -10,6 +13,7 @@ import android.widget.Button;
 
 import com.example.studenttutoring.studentpage.StudentPage;
 import com.example.studenttutoring.tutorpage.TutorPage;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,16 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    }
-
-    public void openLoginPage() {
-        Intent intent = new Intent(this, LoginPage.class);
-        startActivity(intent);
-    }
-
-    public void openSignupPage() {
-        Intent intent = new Intent(this, SignupPage.class);
-        startActivity(intent);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
+        NavController navController = Navigation.findNavController(this, R.id.fragment);
+        NavigationUI.setupWithNavController(bottomNavigationView,navController);
     }
 
     public void openTutorPage() {
