@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <!-- Sunny's Colors <!-->
+    <color name="ratings_background">#65B8FA</color>
+    <color name="dark_white">#F1F7ED</color>
+
+    <color name="confirmation_background">#BBF3B2</color>
 </resources>

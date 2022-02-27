@@ -15,9 +15,28 @@
     <string name="sub_spinner">Select Your Subject</string>
     <string name="ratings_title_text_view">Leave a review!</string>
     <string name="numerical_ratings_text_view">Numerical Rating</string>
-    <string name="numerical_ratings_input">Enter Input</string>
+    <string name="numerical_ratings_input">Enter Rating</string>
     <string name="comments_text_view">Comments:</string>
-    <string name="comments_input">Enter Input</string>
+    <string name="comments_input">Enter Comment</string>
     <string name="submit_button">Submit</string>
     <string name="cancel_button">Cancel</string>
+
+
+    <!-->Sunny's strings<!-->
+    <string name="ratings_title">Rate A Tutor</string>
+    <string name="tutor_name_textview">Tutor Name…</string>
+    <string name="tutor_name_single_line">Name</string>
+    <string name="comments_textview">Comments:</string>
+    <string name="comments_multi_line">Add Comment…</string>
+    <string name="recommend_tutor_textview">Recommend Tutor?</string>
+    <string name="no_text_view">No</string>
+    <string name="yes_text_view">Yes</string>
+    <string name="cancel_button_text">Cancel</string>
+    <string name="submit_button_text">Submit</string>
+    <string name="go_home_button">Home</string>
+    <string name="confirmation_text_view">Your review has been sent!</string>
+    <string name="thank_you_text_view">Thank You!</string>
+
+
+
 </resources>
