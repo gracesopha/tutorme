@@ -7,25 +7,55 @@
     android:layout_height="match_parent"
     tools:context=".calendarpage.CalendarPage">
 
-    <Spinner
-        android:id="@+id/subjects_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:contentDescription='@string/sub_spinner'
-        android:dropDownWidth="wrap_content"
-        android:spinnerMode="dropdown"
-        android:visibility="visible"
+
+
+
+    <RelativeLayout
+        android:id="@+id/spinnerBg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".28"
+        android:background="@drawable/calendar_spinner_bg"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="20dp">
+
+        <Spinner
+            android:id="@+id/subjects_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription='@string/sub_spinner'
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:dropDownWidth="wrap_content"
+            android:visibility="visible"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:layout_marginStart="5dp"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:src="@drawable/spinner_dropdown"
+            android:contentDescription="Subjects"/>
+
+    </RelativeLayout>
 
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subjects_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerBg" />
 </androidx.constraintlayout.widget.ConstraintLayout>

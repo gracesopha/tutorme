@@ -11,13 +11,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.studenttutoring.R;
 
 public class CalendarPage extends Fragment {
 
     private CalendarPageViewModel mViewModel;
-
+    private Spinner spinner;
     public static CalendarPage newInstance() {
         return new CalendarPage();
     }
@@ -25,12 +27,18 @@ public class CalendarPage extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.calendar_page_fragment, container, false);
+        View v = inflater.inflate(R.layout.calendar_page_fragment, container, false);
+        spinner = v.findViewById(R.id.subjects_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.subject_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        return v;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         mViewModel = new ViewModelProvider(this).get(CalendarPageViewModel.class);
         // TODO: Use the ViewModel
     }

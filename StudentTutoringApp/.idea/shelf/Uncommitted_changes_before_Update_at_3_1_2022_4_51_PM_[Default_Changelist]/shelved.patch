@@ -1,0 +1,202 @@
+Index: app/src/main/res/layout/calender_page_spinner.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/calender_page_spinner.xml b/app/src/main/res/layout/calender_page_spinner.xml
+new file mode 100644
+--- /dev/null	(date 1646174977952)
++++ b/app/src/main/res/layout/calender_page_spinner.xml	(date 1646174977952)
+@@ -0,0 +1,41 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginRight="3dp"
++        android:layout_weight=".28"
++        android:background="@drawable/calendar_spinner_bg"
++        android:orientation="horizontal"
++        tools:ignore="MissingConstraints">
++
++        <Spinner
++            android:id="@+id/spinner2"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_centerVertical="true"
++            android:layout_gravity="center"
++            android:layout_marginLeft="5dp"
++            android:background="@android:color/transparent"
++            android:gravity="center"
++            android:spinnerMode="dropdown" />
++
++        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
++            android:id="@android:id/text1"
++            android:maxLines="1"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:ellipsize="marquee" />
++        <ImageView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentRight="true"
++            android:layout_centerVertical="true"
++            android:layout_gravity="center"
++            android:src="@drawable/spinner_dropdown" />
++
++    </RelativeLayout>
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/calendar_page_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/frameLayout\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".calendarpage.CalendarPage\">\r\n\r\n    <Spinner\r\n        android:id=\"@+id/subjects_spinner\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"48dp\"\r\n        android:contentDescription='@string/sub_spinner'\r\n        android:dropDownWidth=\"wrap_content\"\r\n        android:spinnerMode=\"dropdown\"\r\n        android:visibility=\"visible\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.498\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        tools:visibility=\"visible\" />\r\n\r\n    <CalendarView\r\n        android:id=\"@+id/calendarView\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/subjects_spinner\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/calendar_page_fragment.xml b/app/src/main/res/layout/calendar_page_fragment.xml
+--- a/app/src/main/res/layout/calendar_page_fragment.xml	(revision 586ccbf1b258a7dcbad7976a5b6ad4487dd52e69)
++++ b/app/src/main/res/layout/calendar_page_fragment.xml	(date 1646173891563)
+@@ -9,8 +9,8 @@
+ 
+     <Spinner
+         android:id="@+id/subjects_spinner"
+-        android:layout_width="wrap_content"
+-        android:layout_height="48dp"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
+         android:contentDescription='@string/sub_spinner'
+         android:dropDownWidth="wrap_content"
+         android:spinnerMode="dropdown"
+@@ -19,12 +19,16 @@
+         app:layout_constraintHorizontal_bias="0.498"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
++        android:layout_marginStart="100dp"
++        android:layout_marginEnd="100dp"
++        android:layout_marginTop="20dp"
+         tools:visibility="visible" />
+ 
+     <CalendarView
+         android:id="@+id/calendarView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
++        android:layout_marginTop="10dp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/subjects_spinner" />
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.37864583333333335\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml\" value=\"0.30687830687830686\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.3625\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.21422101449275363\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.3582427536231884\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml\" value=\"0.3875\" />\r\n        <entry key=\"app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.2595\" />\r\n        <entry key=\"app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2595\" />\r\n        <entry key=\"app/src/main/res/layout-land/activity_main.xml\" value=\"0.12604166666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_login_page.xml\" value=\"0.27322794596354166\" />\r\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.19635416666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_signup_page.xml\" value=\"0.19635416666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_tutor_page.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/activity_tutor_pay.xml\" value=\"0.2545289855072464\" />\r\n        <entry key=\"app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.28804347826086957\" />\r\n        <entry key=\"app/src/main/res/layout/student_page_fragment.xml\" value=\"0.18020833333333333\" />\r\n        <entry key=\"app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.2931747436523438\" />\r\n        <entry key=\"app/src/main/res/menu/bottom_nav.xml\" value=\"0.1\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 586ccbf1b258a7dcbad7976a5b6ad4487dd52e69)
++++ b/.idea/misc.xml	(date 1646174493037)
+@@ -4,13 +4,15 @@
+     <option name="filePathToZoomLevelMap">
+       <map>
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37864583333333335" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml" value="0.2535" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml" value="0.30687830687830686" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.33" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+-        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml" value="0.18541666666666667" />
+-        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml" value="0.18541666666666667" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml" value="0.33" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml" value="0.33" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.18541666666666667" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.18541666666666667" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml" value="0.3625" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.18541666666666667" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.18541666666666667" />
+         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.21422101449275363" />
+Index: app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studenttutoring.calendarpage;\r\n\r\nimport androidx.lifecycle.ViewModelProvider;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\nimport com.example.studenttutoring.R;\r\n\r\npublic class CalendarPage extends Fragment {\r\n\r\n    private CalendarPageViewModel mViewModel;\r\n\r\n    public static CalendarPage newInstance() {\r\n        return new CalendarPage();\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,\r\n                             @Nullable Bundle savedInstanceState) {\r\n        return inflater.inflate(R.layout.calendar_page_fragment, container, false);\r\n    }\r\n\r\n    @Override\r\n    public void onActivityCreated(@Nullable Bundle savedInstanceState) {\r\n        super.onActivityCreated(savedInstanceState);\r\n        mViewModel = new ViewModelProvider(this).get(CalendarPageViewModel.class);\r\n        // TODO: Use the ViewModel\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java b/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java
+--- a/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java	(revision 586ccbf1b258a7dcbad7976a5b6ad4487dd52e69)
++++ b/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java	(date 1646174923363)
+@@ -11,13 +11,15 @@
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.ArrayAdapter;
++import android.widget.Spinner;
+ 
+ import com.example.studenttutoring.R;
+ 
+ public class CalendarPage extends Fragment {
+ 
+     private CalendarPageViewModel mViewModel;
+-
++    private Spinner spinner;
+     public static CalendarPage newInstance() {
+         return new CalendarPage();
+     }
+@@ -25,12 +27,18 @@
+     @Override
+     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                              @Nullable Bundle savedInstanceState) {
+-        return inflater.inflate(R.layout.calendar_page_fragment, container, false);
++        View v = inflater.inflate(R.layout.calendar_page_fragment, container, false);
++        spinner = (Spinner) v.findViewById(R.id.subjects_spinner);
++        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.subject_array, R.layout.calender_page_spinner);
++        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
++        spinner.setAdapter(adapter);
++        return v;
+     }
+ 
+     @Override
+     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+         super.onActivityCreated(savedInstanceState);
++
+         mViewModel = new ViewModelProvider(this).get(CalendarPageViewModel.class);
+         // TODO: Use the ViewModel
+     }
+Index: app/src/main/res/drawable/calendar_spinner_bg.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/calendar_spinner_bg.xml b/app/src/main/res/drawable/calendar_spinner_bg.xml
+new file mode 100644
+--- /dev/null	(date 1646174418845)
++++ b/app/src/main/res/drawable/calendar_spinner_bg.xml	(date 1646174418845)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="utf-8"?>
++<shape xmlns:android="http://schemas.android.com/apk/res/android">
++    <solid android:color="@android:color/transparent" />
++    <corners android:radius="5dp" />
++    <stroke
++        android:width="1dp"
++        android:color="@android:color/darker_gray" />
++</shape>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_ratings_confirmation.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".RatingsConfirmation\"\r\n    android:background=\"@color/confirmation_background\">\r\n\r\n    <Button\r\n        android:id=\"@+id/confirmation_home_button\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"@string/go_home_button\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.498\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.743\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView7\"\r\n        android:layout_width=\"155dp\"\r\n        android:layout_height=\"39dp\"\r\n        android:text=\"@string/thank_you_text_view\"\r\n        android:textAlignment=\"center\"\r\n        android:textSize=\"24sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.477\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.235\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView8\"\r\n        android:layout_width=\"288dp\"\r\n        android:layout_height=\"77dp\"\r\n        android:text=\"@string/confirmation_text_view\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.495\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.36\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_ratings_confirmation.xml b/app/src/main/res/layout/activity_ratings_confirmation.xml
+--- a/app/src/main/res/layout/activity_ratings_confirmation.xml	(revision 586ccbf1b258a7dcbad7976a5b6ad4487dd52e69)
++++ b/app/src/main/res/layout/activity_ratings_confirmation.xml	(date 1646174062030)
+@@ -39,6 +39,7 @@
+         android:layout_height="77dp"
+         android:text="@string/confirmation_text_view"
+         android:textSize="20sp"
++        android:textAlignment="center"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.495"
