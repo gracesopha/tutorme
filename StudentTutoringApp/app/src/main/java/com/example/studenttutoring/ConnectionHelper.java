@@ -10,14 +10,9 @@ import java.sql.Statement;
 
 public class ConnectionHelper {
     // instance fields
+    Connection con;
     String user, pass, ip, port, database;
-    static Connection connect = null;
-    Statement statement = null;
 
-    //constructor
-    public ConnectionHelper(){
-
-    }
 
     public Connection connectionclass(){
         user="sql5473138";
@@ -28,13 +23,14 @@ public class ConnectionHelper {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Connection connection = null;
-        String ConnectionURL;
+        String ConnectionURL = null;
 
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
             ConnectionURL = "jdbc:mysql://" + ip + "/" + port +"/" +database;
             connection = DriverManager.getConnection(ConnectionURL,user,pass);
+            System.out.println("Connected to database");
         }
         catch (Exception ex){
             Log.e("Error",ex.getMessage());
