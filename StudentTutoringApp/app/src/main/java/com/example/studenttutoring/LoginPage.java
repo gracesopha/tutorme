@@ -7,18 +7,35 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 @SuppressWarnings("serial")
 public class LoginPage extends AppCompatActivity {
 
-    ConnectionHelper conn;
-    public LoginPage () {
-        conn = new ConnectionHelper();
+    private Button login_button;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login_page);
+
+        login_button = findViewById(R.id.login_button);
+
+        login_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submit();
+            }
+        });
     }
-
-    public static void main (String[] args) {
-        new LoginPage();
+    public void submit() {
+        Intent intent = new Intent(this, MainActivity.class); //source, destination
+        startActivity(intent);
+        finish();
     }
 
     @Override
