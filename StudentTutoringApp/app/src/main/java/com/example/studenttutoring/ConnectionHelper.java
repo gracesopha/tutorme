@@ -9,7 +9,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class ConnectionHelper {
+    // instance fields
     String user, pass, ip, port, database;
+    static Connection connect = null;
+    Statement statement = null;
+
+    //constructor
+    public ConnectionHelper(){
+
+    }
 
     public Connection connectionclass(){
         user="sql5473138";
@@ -30,9 +38,11 @@ public class ConnectionHelper {
         }
         catch (Exception ex){
             Log.e("Error",ex.getMessage());
+            System.out.println("Cannot connect to database");
         }
         return connection;
     }
+
 }
 
 
