@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.studenttutoring.MainActivity;
 import com.example.studenttutoring.R;
 
 public class TutorPage extends Fragment {
@@ -25,6 +27,10 @@ public class TutorPage extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+/*        MainActivity activity = (MainActivity) getActivity();
+        String userEmail = activity.getEmail();
+        TextView email = (TextView) getView().findViewById(R.id.emailLabel2);
+        email.setText(userEmail);*/
         return inflater.inflate(R.layout.tutor_page_fragment, container, false);
     }
 

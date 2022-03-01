@@ -9,33 +9,38 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import com.google.android.material.textfield.TextInputEditText;
 
 @SuppressWarnings("serial")
 public class LoginPage extends AppCompatActivity {
 
-    private Button login_button;
+    private TextInputEditText email;
+
+    ConnectionHelper conn;
+    public LoginPage () {
+        conn = new ConnectionHelper();
+
+    }
+
+    public static void main (String[] args) {
+        new LoginPage();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        login_button = findViewById(R.id.login_button);
-
-        login_button.setOnClickListener(new View.OnClickListener() {
-            @Override
+        final Button loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                submit();
+                email = findViewById(R.id.loginEmail);
+                Intent intent = new Intent(LoginPage.this, MainActivity.class);
+                intent.putExtra("userEmail", email.toString());
+                startActivity(intent);
+                finish();
             }
         });
     }
 
-    public void submit() {
-        Intent intent = new Intent(this, MainActivity.class); //source, destination
-        startActivity(intent);
-        finish();
-    }
 }
