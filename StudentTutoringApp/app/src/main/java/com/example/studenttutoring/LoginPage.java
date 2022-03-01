@@ -7,9 +7,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 @SuppressWarnings("serial")
 public class LoginPage extends AppCompatActivity {
+
+    private TextInputEditText email;
 
     ConnectionHelper conn;
     public LoginPage () {
@@ -27,10 +32,11 @@ public class LoginPage extends AppCompatActivity {
         setContentView(R.layout.activity_login_page);
 
         final Button loginButton = findViewById(R.id.loginButton);
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                email = findViewById(R.id.loginEmail);
                 Intent intent = new Intent(LoginPage.this, MainActivity.class);
+                intent.putExtra("userEmail", email.toString());
                 startActivity(intent);
                 finish();
             }
