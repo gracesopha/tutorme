@@ -1,5 +1,6 @@
 package com.example.studenttutoring;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -8,34 +9,50 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.studenttutoring.calendarpage.CalendarPage;
 import com.example.studenttutoring.studentpage.StudentPage;
 import com.example.studenttutoring.tutorpage.TutorPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
-        NavController navController = Navigation.findNavController(this, R.id.fragment);
-        NavigationUI.setupWithNavController(bottomNavigationView,navController);
-    }
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-    public void openTutorPage() {
-        Intent intent = new Intent(this, TutorPage.class);
-        startActivity(intent);
-    }
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
 
-    public void openStudentPage() {
-        Intent intent = new Intent(this, StudentPage.class);
-        startActivity(intent);
     }
+    TutorPage firstFragment = new TutorPage();
+    StudentPage secondFragment = new StudentPage();
+    CalendarPage thirdFragment = new CalendarPage();
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, firstFragment).commit();
+                return true;
+
+            case R.id.navigation_dashboard:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, secondFragment).commit();
+                return true;
+
+            case R.id.navigation_calendar:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, thirdFragment).commit();
+                return true;
+        }
+        return false;
+    }
 }
