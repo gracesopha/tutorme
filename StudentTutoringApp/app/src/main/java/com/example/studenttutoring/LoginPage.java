@@ -9,6 +9,12 @@ import android.widget.Button;
 
 public class LoginPage extends AppCompatActivity {
 
+    ConnectionHelper conn;
+    public LoginPage () {
+        conn = new ConnectionHelper();
+
+    }
+
     private Button logoutButton;
 
     @Override
@@ -16,7 +22,7 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        logoutButton = (Button) findViewById(R.id.logoutButton);
+        logoutButton = (Button) findViewById(R.id.loginButton);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override

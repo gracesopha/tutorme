@@ -36,7 +36,7 @@
     <string name="go_home_button">Home</string>
     <string name="confirmation_text_view">Your review has been sent!</string>
     <string name="thank_you_text_view">Thank You!</string>
-
+    <string name="login">LogIn</string>
 
 
 </resources>
