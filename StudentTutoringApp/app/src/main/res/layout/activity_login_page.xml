@@ -34,51 +34,38 @@
 
     <EditText
         android:id="@+id/loginPass"
-        android:layout_width="272dp"
-        android:layout_height="52dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:ems="10"
-        android:hint="Create password"
+        android:hint="Password"
         android:inputType="textPassword"
+        android:background="@drawable/text_field_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.978"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.499"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:drawableLeft="@drawable/pass_icon"
+        android:drawablePadding="10dp"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/loginEmail"
-        android:layout_width="270dp"
-        android:layout_height="49dp"
-        android:hint="abc@email.com"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Email"
+        android:background="@drawable/text_field_bg"
+        android:drawableLeft="@drawable/user_icon"
+        android:drawablePadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.964"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341" />
-
-    <TextView
-        android:id="@+id/emailHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.352" />
-
-    <TextView
-        android:id="@+id/passwordHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.341"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

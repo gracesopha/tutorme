@@ -32,26 +32,10 @@ public class LoginPage extends AppCompatActivity {
             }
         });
     }
+
     public void submit() {
         Intent intent = new Intent(this, MainActivity.class); //source, destination
         startActivity(intent);
         finish();
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_page);
-
-        final Button loginButton = findViewById(R.id.loginButton);
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-    }
-
 }

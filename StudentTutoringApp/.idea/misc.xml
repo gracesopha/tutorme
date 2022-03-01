@@ -4,7 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37864583333333335" />
+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar.xml" value="0.2535" />
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml" value="0.2535" />
+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/home.xml" value="0.2535" />
+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2535" />
+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/text_field_bg.xml" value="0.2535" />
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml" value="0.30687830687830686" />
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.33" />
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.3625" />
@@ -17,22 +21,13 @@
         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.18541666666666667" />
         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.21422101449275363" />
         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml" value="0.3582427536231884" />
-        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml" value="0.3582427536231884" />
-        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.20208333333333334" />
         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.33" />
         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml" value="0.3875" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.358695652173913" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2595" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.12604166666666666" />
         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.27322794596354166" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
-        <entry key="app/src/main/res/layout/activity_ratings.xml" value="0.20425724637681159" />
-        <entry key="app/src/main/res/layout/activity_ratings_confirmation.xml" value="0.2079925537109375" />
         <entry key="app/src/main/res/layout/activity_signup_page.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout/activity_tutor_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_tutor_pay.xml" value="0.2545289855072464" />
