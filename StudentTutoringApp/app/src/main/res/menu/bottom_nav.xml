@@ -8,13 +8,13 @@
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/profile"
-        android:title="Profile" />
+        android:icon="@drawable/calendar"
+        android:title="Calendar" />
 
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/calendar"
-        android:title="Calendar" />
+        android:icon="@drawable/profile"
+        android:title="Profile" />
 
     <item
         android:id="@+id/navigation_rating"
