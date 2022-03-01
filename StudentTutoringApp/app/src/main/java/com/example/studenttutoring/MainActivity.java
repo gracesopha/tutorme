@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
 
     }
+
     TutorPage firstFragment = new TutorPage();
     StudentPage secondFragment = new StudentPage();
     CalendarPage thirdFragment = new CalendarPage();
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
             case R.id.navigation_calendar:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, secondFragment).commit();
+                return true;
+            case R.id.navigation_rating:
+                startActivity((new Intent(this, Ratings.class)));
                 return true;
         }
         return false;
