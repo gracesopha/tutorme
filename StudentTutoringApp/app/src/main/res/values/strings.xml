@@ -41,6 +41,15 @@
     <string name="profile">Profile</string>
     <string name="rating">Rating</string>
     <string name="home">Home</string>
+    <string name="first_and_last_name">First and Last Name</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="resume">Resume</string>
+    <string name="edit_profile">EDIT PROFILE</string>
+    <string name="_111_111_1111">111-111-1111</string>
+    <string name="john_doe">John Doe</string>
+    <string name="johndoe_email_com">johndoe@email.com</string>
+    <string name="welcome_joe">Welcome, Joe!</string>
 
 
 </resources>
