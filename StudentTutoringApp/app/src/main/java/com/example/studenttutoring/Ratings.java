@@ -44,25 +44,18 @@ public class Ratings extends AppCompatActivity {
     }
 
     public void submit() {
-        Intent intent1 = new Intent(this, RatingsConfirmation.class); //source, destination
-        Intent intent2 = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, RatingsConfirmation.class); //source, destination
         if(name.getText().toString().trim().isEmpty()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    startActivity(intent2);
-                }
-            });
-            builder.setNegativeButton("CANCEL", (dialog, id) -> name.setText(""));
-            builder.setMessage("Rating must include Tutor name. Click OK to return, CANCEL to add name");
+            builder.setPositiveButton("OK", (dialog, id) -> name.setText(""));
+            builder.setMessage("Rating must include Tutor name. Click OK to add name");
 
             AlertDialog dialog = builder.create();
             dialog.show();
             return;
         }
-        startActivity(intent1);
+        startActivity(intent);
         finish();
     }
 }
