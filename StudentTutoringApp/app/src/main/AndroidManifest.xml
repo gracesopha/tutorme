@@ -16,6 +16,9 @@
             android:name=".SignupPage"
             android:exported="false" />
         <activity
+            android:name=".RatingsConfirmation"
+            android:exported="false" />
+        <activity
             android:name=".LoginPage"
             android:exported="true">
             <intent-filter>
