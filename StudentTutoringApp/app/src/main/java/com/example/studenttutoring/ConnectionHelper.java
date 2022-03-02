@@ -3,16 +3,13 @@ package com.example.studenttutoring;
 import android.os.StrictMode;
 import android.util.Log;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ConnectionHelper {
     // instance fields
     Connection con;
     String user, pass, ip, port, database;
-
+    private static final String TAG = "TutorPage";
 
     public Connection connectionclass(){
         user="sql5473138";
@@ -24,15 +21,17 @@ public class ConnectionHelper {
         StrictMode.setThreadPolicy(policy);
         Connection connection = null;
         String ConnectionURL = null;
-
+        Log.d(TAG, "ConnectionHelper : Attempting Connection");
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
             ConnectionURL = "jdbc:mysql://" + ip + ":" + port +"/" +database;
+            Log.d(TAG, "ConnectionHelper : The ConnectionURL is : " + ConnectionURL);
             connection = DriverManager.getConnection(ConnectionURL,user,pass);
-            System.out.println("Connected to database");
+            Log.d(TAG, "ConnectionHelper : Successful Connection");
         }
         catch (Exception ex){
+            Log.d(TAG, "ConnectionHelper : Connection Failed");
             Log.e("Error",ex.getMessage());
             System.out.println("Cannot connect to database");
         }
