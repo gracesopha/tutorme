@@ -28,7 +28,7 @@ public class ConnectionHelper {
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            ConnectionURL = "jdbc:mysql://" + ip + "/" + port +"/" +database;
+            ConnectionURL = "jdbc:mysql://" + ip + ":" + port +"/" +database;
             connection = DriverManager.getConnection(ConnectionURL,user,pass);
             System.out.println("Connected to database");
         }
