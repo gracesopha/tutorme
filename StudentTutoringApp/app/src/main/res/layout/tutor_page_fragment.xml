@@ -48,13 +48,13 @@
         app:layout_constraintVertical_bias="0.522" />
 
     <TextView
+        android:gravity="left"
         android:id="@+id/contactLabel2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/_111_111_1111"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.69"
+        android:layout_marginStart="230dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.52" />
@@ -73,13 +73,13 @@
         app:layout_constraintVertical_bias="0.614" />
 
     <TextView
+        android:gravity="left"
         android:id="@+id/fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/john_doe"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.633"
+        android:layout_marginStart="230dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.349" />
@@ -98,15 +98,15 @@
         app:layout_constraintVertical_bias="0.438" />
 
     <TextView
+        android:textAlignment="textStart"
         android:id="@+id/emailLabel2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/johndoe_email_com"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.787"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="230dp"
         app:layout_constraintVertical_bias="0.436" />
 
     <androidx.constraintlayout.widget.Guideline
