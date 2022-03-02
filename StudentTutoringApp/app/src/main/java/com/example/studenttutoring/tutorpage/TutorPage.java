@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,21 +18,22 @@ import com.example.studenttutoring.MainActivity;
 import com.example.studenttutoring.R;
 
 public class TutorPage extends Fragment {
+    private static final String TAG = "TutorPage";
 
     private TutorPageViewModel mViewModel;
-
-    public static TutorPage newInstance() {
-        return new TutorPage();
-    }
-
+    private TextView email;
+    String userEmail = "abc@gmail.com";
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-/*        MainActivity activity = (MainActivity) getActivity();
-        String userEmail = activity.getEmail();
-        TextView email = (TextView) getView().findViewById(R.id.emailLabel2);
-        email.setText(userEmail);*/
-        return inflater.inflate(R.layout.tutor_page_fragment, container, false);
+        View v = inflater.inflate(R.layout.tutor_page_fragment, container, false);
+        email = v.findViewById(R.id.emailLabel2);
+        Bundle bundle=this.getArguments();
+        userEmail = bundle.getString("userEmail");
+        email.setText(userEmail);
+        Log.d(TAG, "TutorPage : pulled string "+userEmail);
+        Log.d(TAG, "TutorPage : Email string "+email.getText().toString());
+        return v;
     }
 
     @Override

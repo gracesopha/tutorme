@@ -2,6 +2,8 @@ package com.example.studenttutoring;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -9,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -19,9 +22,9 @@ import com.example.studenttutoring.tutorpage.TutorPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-
+    private static final String TAG = "MainActivity";
     BottomNavigationView bottomNavigationView;
-    private String userEmail;
+    private String userEmail = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
         Intent intent = getIntent();
         if (intent.hasExtra("userEmail")) {
-            userEmail = intent.getExtras().getString("prevTitle");
+            userEmail = intent.getExtras().getString("userEmail");
         }
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -47,7 +50,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, firstFragment).commit();
+                Bundle bundle = new Bundle();
+                bundle.putString("userEmail", userEmail);
+                Log.d(TAG, "MainActivity : pulled string "+userEmail);
+                FragmentTransaction firstFragmentTrans = getSupportFragmentManager().beginTransaction();
+                firstFragment.setArguments(bundle);
+                firstFragmentTrans.addToBackStack(null);
+                firstFragmentTrans.replace(R.id.container, firstFragment);
+                firstFragmentTrans.commit();
                 return true;
 
             case R.id.navigation_dashboard:
@@ -64,7 +74,4 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return false;
     }
 
-    public String getEmail() {
-        return userEmail;
-    }
 }

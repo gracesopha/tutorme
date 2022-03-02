@@ -31,12 +31,12 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        final Button loginButton = findViewById(R.id.loginButton);
+        final Button loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 email = findViewById(R.id.loginEmail);
                 Intent intent = new Intent(LoginPage.this, MainActivity.class);
-                intent.putExtra("userEmail", email.toString());
+                intent.putExtra("userEmail", email.getText().toString());
                 startActivity(intent);
                 finish();
             }
