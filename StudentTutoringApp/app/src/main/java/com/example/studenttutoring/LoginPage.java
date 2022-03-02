@@ -37,6 +37,7 @@ public class LoginPage extends AppCompatActivity {
         setContentView(R.layout.activity_login_page);
         Connection connect;
         String pulled = "";
+        Integer data;
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connectionclass();
@@ -47,6 +48,11 @@ public class LoginPage extends AppCompatActivity {
                 while(rs.next()){
                     pulled = rs.getString("email");
                     Log.d(TAG, "LoginPage : Pulled email : "+pulled);
+
+                    /*String exist = "SELECT EXISTS(" + query + "WHERE=(email='" + pulled + "'))";
+                    ResultSet check = st.executeQuery(exist);
+                    data = rs.getInt(1);
+                    Log.d(TAG, "EXISTS? " + data); */
                 }
             }
         }
