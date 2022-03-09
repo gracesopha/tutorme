@@ -45,8 +45,8 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:src="@drawable/spinner_dropdown"
-            android:contentDescription="Subjects"/>
+            android:contentDescription="Subjects"
+            android:src="@drawable/spinner_dropdown" />
 
     </RelativeLayout>
 
