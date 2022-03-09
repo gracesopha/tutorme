@@ -24,18 +24,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "MainActivity";
     BottomNavigationView bottomNavigationView;
-    private String userEmail = "";
+    private String userEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Intent intent = getIntent();
         if (intent.hasExtra("userEmail")) {
             userEmail = intent.getExtras().getString("userEmail");
         }
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
 

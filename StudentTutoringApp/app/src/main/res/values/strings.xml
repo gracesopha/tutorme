@@ -50,6 +50,11 @@
     <string name="john_doe">John Doe</string>
     <string name="johndoe_email_com">johndoe@email.com</string>
     <string name="welcome_joe">Welcome, Joe!</string>
+    <string name="student_tutoring_login">Student Tutoring Login</string>
+    <string name="no_account_sign_up_here">No account? Sign Up Here!</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="password">Password</string>
+    <string name="abc_gmail_com">abc@gmail.com</string>
 
 
 </resources>
