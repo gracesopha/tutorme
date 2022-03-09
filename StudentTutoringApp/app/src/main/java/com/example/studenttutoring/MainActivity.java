@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
-    TutorPage firstFragment = new TutorPage();
-    StudentPage secondFragment = new StudentPage();
-    CalendarPage thirdFragment = new CalendarPage();
+    TutorPage TutorPage = new TutorPage();
+    StudentPage StudentPage = new StudentPage();
+    CalendarPage CalendarPage = new CalendarPage();
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -54,19 +54,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 bundle.putString("userEmail", userEmail);
                 Log.d(TAG, "MainActivity : pulled string "+userEmail);
                 FragmentTransaction firstFragmentTrans = getSupportFragmentManager().beginTransaction();
-                firstFragment.setArguments(bundle);
+                TutorPage.setArguments(bundle);
                 firstFragmentTrans.addToBackStack(null);
-                firstFragmentTrans.replace(R.id.container, firstFragment);
+                firstFragmentTrans.replace(R.id.container, TutorPage);
                 firstFragmentTrans.commit();
                 return true;
 
             case R.id.navigation_dashboard:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, thirdFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, CalendarPage).commit();
                 return true;
 
             case R.id.navigation_calendar:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, secondFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, StudentPage).commit();
                 return true;
+
             case R.id.navigation_rating:
                 startActivity((new Intent(this, Ratings.class)));
                 return true;
