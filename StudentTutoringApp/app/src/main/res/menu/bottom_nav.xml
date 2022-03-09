@@ -12,11 +12,6 @@
         android:title="@string/calendar" />
 
     <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/profile"
-        android:title="@string/profile" />
-
-    <item
         android:id="@+id/navigation_rating"
         android:icon="@drawable/rating"
         android:title="@string/rating" />

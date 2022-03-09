@@ -20,6 +20,7 @@
     <string name="comments_input">Enter Comment</string>
     <string name="submit_button">Submit</string>
     <string name="cancel_button">Cancel</string>
+    <string name="logout_button">Log Out</string>
 
 
     <!-->Sunny's strings<!-->
@@ -55,6 +56,10 @@
     <string name="sign_up">SIGN UP</string>
     <string name="password">Password</string>
     <string name="abc_gmail_com">abc@gmail.com</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="sign_up_for_tutoring">Sign Up for Tutoring</string>
 
 
 </resources>
