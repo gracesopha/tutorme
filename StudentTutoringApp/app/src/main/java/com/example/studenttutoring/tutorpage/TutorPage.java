@@ -1,7 +1,5 @@
 package com.example.studenttutoring.tutorpage;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,14 +16,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.studenttutoring.LoginPage;
-import com.example.studenttutoring.MainActivity;
 import com.example.studenttutoring.R;
-import com.example.studenttutoring.SignupPage;
 
 public class TutorPage extends Fragment {
     private static final String TAG = "TutorPage";
 
-    private TutorPageViewModel mViewModel;
     private TextView email;
     String userEmail = "abc@gmail.com";
     Button logoutButton;
@@ -43,15 +38,6 @@ public class TutorPage extends Fragment {
 
         // Logout button
         logoutButton = (Button) v.findViewById(R.id.logout);
-
-        return v;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(TutorPageViewModel.class);
-        // TODO: Use the ViewModel
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,5 +46,7 @@ public class TutorPage extends Fragment {
                 ((Activity) getActivity()).overridePendingTransition(0,0);
             }
         });
+        return v;
     }
+
 }

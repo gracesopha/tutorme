@@ -60,6 +60,8 @@
     <string name="last_name">Last Name</string>
     <string name="phone_number">Phone Number</string>
     <string name="sign_up_for_tutoring">Sign Up for Tutoring</string>
+    <string name="welcome">Welcome,</string>
+    <string name="x">X</string>
 
 
 </resources>
