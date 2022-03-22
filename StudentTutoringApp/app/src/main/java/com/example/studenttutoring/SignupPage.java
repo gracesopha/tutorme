@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,6 +19,9 @@ public class SignupPage extends AppCompatActivity {
 
     private EditText userPass, confirmPass, firstName, lastName, userEmail, userPhone;
     private Button save;
+    private Switch tutorState;
+    private boolean isTutor;
+    private String yesTutor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,31 +34,19 @@ public class SignupPage extends AppCompatActivity {
         userEmail = findViewById(R.id.signUpEmail);
         userPass = findViewById(R.id.signUpPass);
         confirmPass = findViewById(R.id.signUpPass2);
+        tutorState = findViewById(R.id.tutor_switch);
+        isTutor = tutorState.isChecked();
+        if (isTutor) {
+            yesTutor = "1";
+        } else
+            yesTutor = "0";
 
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { submit(); }
         });
-
-        Connection connect;
-        try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connectionclass();
-            if(connect!=null){
-                String query = "";//Insert Query here
-                Statement st = connect.createStatement();
-                ResultSet rs = st.executeQuery(query);
-                while(rs.next()){
-                    //then you use rs.get**** for whatever you want ie rs.getString("Username");
-                }
-            }
-        }
-        catch (Exception ex) {
-            Log.e("Error",ex.getMessage());
-        }
-
     }
+
     public void submit() {
-        Intent intent = new Intent(this, LoginPage.class); //source, destination
         if(confirmPass.getText().toString().trim().isEmpty()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -65,6 +57,25 @@ public class SignupPage extends AppCompatActivity {
             dialog.show();
             return;
         }
+        Connection connect;
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connectionclass();
+            if(connect!=null){
+                String query = String.format("INSERT INTO `LOGIN_ACCT`(`email`, `password`, `firstname`, `lastname`, `contactnum`, `type`) " +
+                        "VALUES ('%1$s','%2$s','%3$s','%4$s','%5$s', '%6$s')", userEmail.getText().toString(), userPass.getText().toString(), firstName.getText().toString(),
+                        lastName.getText().toString(), userPhone.getText().toString(), yesTutor);
+                Statement st = connect.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                while(rs.next()){
+                    //then you use rs.get**** for whatever you want ie rs.getString("Username");
+                }
+            }
+        }
+        catch (Exception ex) {
+            Log.e("Error",ex.getMessage());
+        }
+        Intent intent = new Intent(this, LoginPage.class); //source, destination
         startActivity(intent);
         finish();
     }
