@@ -62,7 +62,7 @@ public class LoginPage extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Email or Password does not exist", Toast.LENGTH_SHORT).show();
                         } else {
                             Log.d(TAG, "onClick: success");
-                            Intent intent = new Intent(LoginPage.this, MainActivity.class);
+                            Intent intent = new Intent(LoginPage.this, MainActivityTutor.class);
                             userEmail = email.getText().toString();
                             startActivity(intent);
                             finish();

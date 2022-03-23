@@ -1,4 +1,4 @@
-package com.example.studenttutoring.tutorpage;
+package com.example.studenttutoring;
 
 import androidx.appcompat.app.AppCompatActivity;
 
