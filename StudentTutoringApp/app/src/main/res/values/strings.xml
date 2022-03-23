@@ -22,7 +22,7 @@
     <string name="cancel_button">Cancel</string>
     <string name="logout_button">Log Out</string>
     <string name = "sign_up"> <u>Sign Up</u> </string>
-    <string name = "welcome_back">Welcome back! Please login to your account</string>
+    <string name = "welcome_back">Welcome back! Please log in to your account</string>
 
     <!-->Sunny's strings<!-->
     <string name="ratings_title">Rate A Tutor</string>
