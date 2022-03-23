@@ -39,29 +39,6 @@ public class TutorPage extends Fragment {
         Log.d(TAG, "TutorPage : pulled string "+userEmail);
         Log.d(TAG, "TutorPage : Email string "+email.getText().toString());
 
-        // First Name and Last Name
-        Connection connect;
-        String firstName = "";
-        String lastName = "";
-        try {
-            ConnectionHelper conn = new ConnectionHelper();
-            connect = conn.connectionclass();
-            if(connect != null) {
-                String query = "select * from LOGIN_ACCT";
-                Statement st = connect.createStatement();
-                ResultSet rs = st.executeQuery(query);
-
-                while(rs.next()) {
-                    firstName = rs.getString("firstname");
-                    lastName = rs.getString("lastname");
-                    Log.d(TAG, "TutorPage : Pulled Name : " + firstName + " " + lastName);
-                }
-            }
-        }
-         catch (Exception ex) {
-            Log.e("Error", ex.getMessage());
-         }
-
         // Logout button
         logoutButton = (Button) v.findViewById(R.id.logout);
         logoutButton.setOnClickListener(new View.OnClickListener() {
