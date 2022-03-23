@@ -24,6 +24,8 @@ import java.sql.*;
 public class TutorPage extends Fragment {
     private static final String TAG = "TutorPage";
     private TextView email;
+    private TextView name;
+    private TextView phone;
     String userEmail = "abc@gmail.com";
     Button logoutButton;
 
@@ -32,9 +34,8 @@ public class TutorPage extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tutor_page_fragment, container, false);
         email = v.findViewById(R.id.emailLabel2);
-        Bundle bundle=this.getArguments();
-        userEmail = bundle.getString("userEmail");
-        email.setText(userEmail);
+        name = v.findViewById(R.id.fullnameLabel);
+        phone = v.findViewById(R.id.contactLabel2);
         Log.d(TAG, "TutorPage : pulled string "+userEmail);
         Log.d(TAG, "TutorPage : Email string "+email.getText().toString());
 
