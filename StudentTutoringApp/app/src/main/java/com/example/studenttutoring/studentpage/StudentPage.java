@@ -16,7 +16,6 @@ import com.example.studenttutoring.R;
 
 public class StudentPage extends Fragment {
 
-    private StudentPageViewModel mViewModel;
 
     public static StudentPage newInstance() {
         return new StudentPage();
@@ -28,11 +27,6 @@ public class StudentPage extends Fragment {
         return inflater.inflate(R.layout.student_page_fragment, container, false);
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(StudentPageViewModel.class);
-        // TODO: Use the ViewModel
-    }
+
 
 }
