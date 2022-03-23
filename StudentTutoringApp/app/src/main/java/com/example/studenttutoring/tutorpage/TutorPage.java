@@ -16,9 +16,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.studenttutoring.ConnectionHelper;
 import com.example.studenttutoring.LoginPage;
 import com.example.studenttutoring.MainActivity;
 import com.example.studenttutoring.R;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class TutorPage extends Fragment {
     private static final String TAG = "TutorPage";
