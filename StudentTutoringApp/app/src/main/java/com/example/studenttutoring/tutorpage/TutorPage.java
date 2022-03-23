@@ -22,15 +22,16 @@ public class TutorPage extends Fragment {
 
     private TutorPageViewModel mViewModel;
     private TextView email;
+    private TextView name;
+    private TextView phone;
     String userEmail = "abc@gmail.com";
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tutor_page_fragment, container, false);
         email = v.findViewById(R.id.emailLabel2);
-        Bundle bundle=this.getArguments();
-        userEmail = bundle.getString("userEmail");
-        email.setText(userEmail);
+        name = v.findViewById(R.id.fullnameLabel);
+        phone = v.findViewById(R.id.contactLabel2);
         Log.d(TAG, "TutorPage : pulled string "+userEmail);
         Log.d(TAG, "TutorPage : Email string "+email.getText().toString());
         return v;

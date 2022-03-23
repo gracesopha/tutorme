@@ -24,21 +24,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "MainActivity";
     BottomNavigationView bottomNavigationView;
-    private String userEmail = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent = getIntent();
-        if (intent.hasExtra("userEmail")) {
-            userEmail = intent.getExtras().getString("userEmail");
-        }
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
-
     }
 
     TutorPage firstFragment = new TutorPage();
@@ -51,13 +46,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch (item.getItemId()) {
             case R.id.navigation_home:
                 Bundle bundle = new Bundle();
-                bundle.putString("userEmail", userEmail);
-                Log.d(TAG, "MainActivity : pulled string "+userEmail);
-                FragmentTransaction firstFragmentTrans = getSupportFragmentManager().beginTransaction();
-                firstFragment.setArguments(bundle);
-                firstFragmentTrans.addToBackStack(null);
-                firstFragmentTrans.replace(R.id.container, firstFragment);
-                firstFragmentTrans.commit();
+                bundle.putString("userEmail", LoginPage.userEmail);
+                Log.d(TAG, "MainActivity : pulled string "+LoginPage.userEmail);
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, firstFragment).commit();
                 return true;
 
             case R.id.navigation_dashboard:
