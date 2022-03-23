@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.w3c.dom.Text;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -71,7 +73,7 @@ public class LoginPage extends AppCompatActivity {
                 }
             }
         });
-        final Button signUpButton = findViewById(R.id.signup_button);
+        final TextView signUpButton = findViewById(R.id.signup_button);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginPage.this, SignupPage.class);
