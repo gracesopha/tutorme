@@ -15,11 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.studenttutoring.ConnectionHelper;
 import com.example.studenttutoring.LoginPage;
 import com.example.studenttutoring.R;
-
-import java.sql.*;
 
 public class TutorPage extends Fragment {
     private static final String TAG = "TutorPage";
@@ -34,7 +31,7 @@ public class TutorPage extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tutor_page_fragment, container, false);
         email = v.findViewById(R.id.email_tutor);
-        name = v.findViewById(R.id.fullname_tutor);
+        name = v.findViewById(R.id.firstname_tutor);
         phone = v.findViewById(R.id.contact_tutor);
         Log.d(TAG, "TutorPage : pulled string "+userEmail);
         Log.d(TAG, "TutorPage : Email string "+email.getText().toString());
