@@ -8,10 +8,9 @@
     tools:context=".tutorpage.TutorPage">
 
     <TextView
-        android:id="@+id/student_name2"
+        android:id="@+id/tutor_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/x"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -65,7 +64,7 @@
         app:layout_constraintVertical_bias="0.522" />
 
     <TextView
-        android:id="@+id/contactLabel2"
+        android:id="@+id/contact_tutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="230dp"
@@ -89,7 +88,7 @@
         app:layout_constraintVertical_bias="0.614" />
 
     <TextView
-        android:id="@+id/fullname"
+        android:id="@+id/fullname_tutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="230dp"
@@ -113,7 +112,7 @@
         app:layout_constraintVertical_bias="0.438" />
 
     <TextView
-        android:id="@+id/emailLabel2"
+        android:id="@+id/email_tutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="230dp"
@@ -143,7 +142,7 @@
         app:layout_constraintVertical_bias="0.794" />
 
     <Button
-        android:id="@+id/logout"
+        android:id="@+id/logout_tutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/logout_button"
