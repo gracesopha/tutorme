@@ -11,9 +11,4 @@
         android:icon="@drawable/calendar"
         android:title="@string/calendar" />
 
-    <item
-        android:id="@+id/navigation_rating"
-        android:icon="@drawable/rating"
-        android:title="@string/rating" />
-
 </menu>

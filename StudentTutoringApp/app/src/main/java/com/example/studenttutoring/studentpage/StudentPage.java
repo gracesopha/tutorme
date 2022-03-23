@@ -35,7 +35,7 @@ public class StudentPage extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.tutor_page_fragment, container, false);
+        View v = inflater.inflate(R.layout.student_page_fragment, container, false);
         email = v.findViewById(R.id.email_student);
         name = v.findViewById(R.id.fullname_student);
         phone = v.findViewById(R.id.contact_student);
