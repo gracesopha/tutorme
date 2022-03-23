@@ -33,9 +33,9 @@ public class TutorPage extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tutor_page_fragment, container, false);
-        email = v.findViewById(R.id.emailLabel2);
-        name = v.findViewById(R.id.fullnameLabel);
-        phone = v.findViewById(R.id.contactLabel2);
+        email = v.findViewById(R.id.email_tutor);
+        name = v.findViewById(R.id.fullname_tutor);
+        phone = v.findViewById(R.id.contact_tutor);
         Log.d(TAG, "TutorPage : pulled string "+userEmail);
         Log.d(TAG, "TutorPage : Email string "+email.getText().toString());
 
@@ -63,7 +63,7 @@ public class TutorPage extends Fragment {
          }
 
         // Logout button
-        logoutButton = (Button) v.findViewById(R.id.logout);
+        logoutButton = (Button) v.findViewById(R.id.logout_tutor);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
