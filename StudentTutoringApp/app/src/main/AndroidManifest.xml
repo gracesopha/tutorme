@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentTutoring">
         <activity
-            android:name=".tutorpage.EditTutorPage"
+            android:name=".EditTutorPage"
             android:exported="false" />
         <activity
             android:name=".SignupPage"
