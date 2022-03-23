@@ -14,9 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.studenttutoring.ConnectionHelper;
 import com.example.studenttutoring.LoginPage;
+import com.example.studenttutoring.MainActivity;
 import com.example.studenttutoring.R;
 
 import java.sql.*;
@@ -26,8 +28,11 @@ public class TutorPage extends Fragment {
     private TextView email;
     private TextView name;
     private TextView phone;
-    String userEmail = "abc@gmail.com";
+    private TextView welcomeName;
+    private Connection connect;
     Button logoutButton;
+
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -36,10 +41,27 @@ public class TutorPage extends Fragment {
         email = v.findViewById(R.id.email_tutor);
         name = v.findViewById(R.id.fullname_tutor);
         phone = v.findViewById(R.id.contact_tutor);
-        Log.d(TAG, "TutorPage : pulled string "+userEmail);
-        Log.d(TAG, "TutorPage : Email string "+email.getText().toString());
+        welcomeName = v.findViewById(R.id.tutor_name);
+        try {
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connectionclass();
+            if (connect != null) {
+                String query = String.format("SELECT * FROM LOGIN_ACCT where (email='%1$s');", LoginPage.userEmail);//Insert Query here
+                Log.d(TAG, "TutorPage: " + query);
+                Statement st = connect.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                rs.last();
+                String tutorName = rs.getString("firstname") + " " + rs.getString("lastname");
+                name.setText(tutorName);
+                welcomeName.setText(tutorName);
+                email.setText(rs.getString("email"));
+                phone.setText(rs.getString("contactnum"));
+            }
+        }
+        catch (Exception ex) {
+            Log.e("Error",ex.getMessage());
+        }
 
-        // Logout button
         logoutButton = (Button) v.findViewById(R.id.logout_tutor);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
