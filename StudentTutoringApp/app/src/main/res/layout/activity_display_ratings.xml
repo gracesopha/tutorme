@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/ratings_text_view"
-        android:layout_width="298dp"
-        android:layout_height="538dp"
+        android:layout_width="253dp"
+        android:layout_height="343dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,4 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.188" />
+
+    <Button
+        android:id="@+id/readReviewsHomeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratings_text_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

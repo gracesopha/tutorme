@@ -2,8 +2,11 @@ package com.example.studenttutoring;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,12 +17,14 @@ import java.sql.Statement;
 public class DisplayRatings extends AppCompatActivity {
 
     private TextView ratings;
+    private Button homeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_ratings);
         Connection conn;
+        homeButton = findViewById(R.id.readReviewsHomeButton);
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             conn = connectionHelper.connectionclass();
@@ -47,6 +52,19 @@ public class DisplayRatings extends AppCompatActivity {
         }catch (Exception ex){
             Log.e("Error",ex.getMessage());
         }
+
+        homeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                goHome();
+            }
+        });
+    }
+
+    public void goHome() {
+        Intent intent = new Intent(this, MainActivity.class); //source, destination
+        startActivity(intent);
+        finish();
     }
 
 
