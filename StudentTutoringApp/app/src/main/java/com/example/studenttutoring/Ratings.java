@@ -25,6 +25,7 @@ public class Ratings extends AppCompatActivity {
     private EditText name;
     private EditText comment;
     private Switch reccomend_switch;
+    private Button read_reviews_button;
     private boolean reccomend = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class Ratings extends AppCompatActivity {
         cancel_button = findViewById(R.id.cancel_button);
         comment = findViewById(R.id.editTextTextMultiLine);
         reccomend_switch = findViewById(R.id.switch2);
+        read_reviews_button = findViewById(R.id.buttonReadReviews);
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { submit(); }
@@ -55,10 +57,23 @@ public class Ratings extends AppCompatActivity {
             }
         });
 
+        read_reviews_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                readReviews();
+            }
+        });
+
     }
 
     public void goHome() {
         Intent intent = new Intent(this, MainActivity.class); //source, destination
+        startActivity(intent);
+        finish();
+    }
+
+    public void readReviews(){
+        Intent intent = new Intent(this, DisplayRatings.class); //source, destination
         startActivity(intent);
         finish();
     }
@@ -91,7 +106,7 @@ public class Ratings extends AppCompatActivity {
                 String add = "";
                 add = "INSERT INTO REVIEW VALUES ('"+name_text+"', '"+comment_text+"', '"+ratings_value+"')";
                 stmt.executeUpdate(add);
-                Log.v("connection test:",comment_text);
+                //Log.v("connection test:",comment_text);
             }
             catch (Exception ex){
                 Log.e("Error",ex.getMessage());

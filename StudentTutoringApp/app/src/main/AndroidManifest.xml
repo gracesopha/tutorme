@@ -16,6 +16,9 @@
             android:name=".EditTutorPage"
             android:exported="false" />
         <activity
+            android:name=".DisplayRatings"
+            android:exported="false" />
+        <activity
             android:name=".SignupPage"
             android:exported="false" />
         <activity
