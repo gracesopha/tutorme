@@ -1,0 +1,77 @@
+Index: app/src/main/java/com/example/studenttutoring/tutorpage/TutorPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studenttutoring.tutorpage;\r\n\r\nimport android.app.Activity;\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\nimport android.widget.TextView;\r\n\r\nimport com.example.studenttutoring.ConnectionHelper;\r\nimport com.example.studenttutoring.LoginPage;\r\nimport com.example.studenttutoring.R;\r\n\r\nimport java.sql.*;\r\n\r\npublic class TutorPage extends Fragment {\r\n    private static final String TAG = \"TutorPage\";\r\n    private TextView email;\r\n    private TextView name;\r\n    private TextView phone;\r\n    String userEmail = \"abc@gmail.com\";\r\n    Button logoutButton;\r\n\r\n    @Override\r\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,\r\n                             @Nullable Bundle savedInstanceState) {\r\n        View v = inflater.inflate(R.layout.tutor_page_fragment, container, false);\r\n        email = v.findViewById(R.id.email_tutor);\r\n        name = v.findViewById(R.id.fullname_tutor);\r\n        phone = v.findViewById(R.id.contact_tutor);\r\n        Log.d(TAG, \"TutorPage : pulled string \"+userEmail);\r\n        Log.d(TAG, \"TutorPage : Email string \"+email.getText().toString());\r\n\r\n        // Logout button\r\n        logoutButton = (Button) v.findViewById(R.id.logout_tutor);\r\n        logoutButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent i = new Intent(getActivity(), LoginPage.class);\r\n                startActivity(i);\r\n                ((Activity) getActivity()).overridePendingTransition(0,0);\r\n            }\r\n        });\r\n        return v;\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/studenttutoring/tutorpage/TutorPage.java b/app/src/main/java/com/example/studenttutoring/tutorpage/TutorPage.java
+--- a/app/src/main/java/com/example/studenttutoring/tutorpage/TutorPage.java	(revision 03438557fe689415955a6bfbc74d8d0b4be76d04)
++++ b/app/src/main/java/com/example/studenttutoring/tutorpage/TutorPage.java	(date 1647998690251)
+@@ -14,9 +14,11 @@
+ import android.view.ViewGroup;
+ import android.widget.Button;
+ import android.widget.TextView;
++import android.widget.Toast;
+ 
+ import com.example.studenttutoring.ConnectionHelper;
+ import com.example.studenttutoring.LoginPage;
++import com.example.studenttutoring.MainActivity;
+ import com.example.studenttutoring.R;
+ 
+ import java.sql.*;
+@@ -26,7 +28,7 @@
+     private TextView email;
+     private TextView name;
+     private TextView phone;
+-    String userEmail = "abc@gmail.com";
++    private Connection connect;
+     Button logoutButton;
+ 
+     @Override
+@@ -36,9 +38,23 @@
+         email = v.findViewById(R.id.email_tutor);
+         name = v.findViewById(R.id.fullname_tutor);
+         phone = v.findViewById(R.id.contact_tutor);
+-        Log.d(TAG, "TutorPage : pulled string "+userEmail);
+-        Log.d(TAG, "TutorPage : Email string "+email.getText().toString());
+-
++        try {
++            ConnectionHelper connectionHelper = new ConnectionHelper();
++            connect = connectionHelper.connectionclass();
++            if (connect != null) {
++                String query = String.format("SELECT * FROM LOGIN_ACCT where (email='%1$s');", LoginPage.userEmail);//Insert Query here
++                Log.d(TAG, "TutorPage: " + query);
++                Statement st = connect.createStatement();
++                ResultSet rs = st.executeQuery(query);
++                rs.last();
++                name.setText(rs.getString("firstname") + " " + rs.getString("lastname"));
++                email.setText(rs.getString("email"));
++                phone.setText(rs.getString("contactnum"));
++            }
++        }
++        catch (Exception ex) {
++            Log.e("Error",ex.getMessage());
++        }
+         // Logout button
+         logoutButton = (Button) v.findViewById(R.id.logout_tutor);
+         logoutButton.setOnClickListener(new View.OnClickListener() {
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.37864583333333335\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/home.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/text_field_bg.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml\" value=\"0.30687830687830686\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.3625\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml\" value=\"0.3625\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.5\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.21422101449275363\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.3582427536231884\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml\" value=\"0.3875\" />\r\n        <entry key=\"app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.2595\" />\r\n        <entry key=\"app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2595\" />\r\n        <entry key=\"app/src/main/res/layout-land/activity_main.xml\" value=\"0.12604166666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_login_page.xml\" value=\"0.27322794596354166\" />\r\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.19635416666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_signup_page.xml\" value=\"0.19635416666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_tutor_page.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/activity_tutor_pay.xml\" value=\"0.2545289855072464\" />\r\n        <entry key=\"app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.28804347826086957\" />\r\n        <entry key=\"app/src/main/res/layout/student_page_fragment.xml\" value=\"0.18020833333333333\" />\r\n        <entry key=\"app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.2931747436523438\" />\r\n        <entry key=\"app/src/main/res/menu/bottom_nav.xml\" value=\"0.1\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 03438557fe689415955a6bfbc74d8d0b4be76d04)
++++ b/.idea/misc.xml	(date 1647998435572)
+@@ -18,7 +18,7 @@
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.18541666666666667" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml" value="0.3625" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.33" />
+-        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.5" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.33" />
+         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.21422101449275363" />
+         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml" value="0.3582427536231884" />
+         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.33" />
