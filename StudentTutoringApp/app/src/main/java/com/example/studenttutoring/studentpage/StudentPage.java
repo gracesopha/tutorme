@@ -27,6 +27,7 @@ public class StudentPage extends Fragment {
     private static final String TAG = "StudentPage";
     private TextView name, email, phone;
     private Button logoutButton;
+    private Button editButton;
 
     public static StudentPage newInstance() {
         return new StudentPage();
@@ -72,6 +73,10 @@ public class StudentPage extends Fragment {
                 ((Activity) getActivity()).overridePendingTransition(0,0);
             }
         });
+
+        // Edit Button
+        editButton = (Button) v.findViewById(R.id.edit_profile_button);
+
         return v;
     }
 
