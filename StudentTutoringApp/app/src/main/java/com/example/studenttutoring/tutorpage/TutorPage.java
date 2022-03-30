@@ -36,7 +36,6 @@ public class TutorPage extends Fragment {
     Button logoutButton;
     Button editButton;
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
