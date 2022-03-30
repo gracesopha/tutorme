@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.studenttutoring.ConnectionHelper;
+import com.example.studenttutoring.EditTutorPage;
 import com.example.studenttutoring.LoginPage;
 import com.example.studenttutoring.R;
 

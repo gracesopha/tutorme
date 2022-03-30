@@ -9,6 +9,7 @@
 
     <TextView
         android:id="@+id/student_name"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -21,6 +22,7 @@
 
     <TextView
         android:id="@+id/welcomeLabel"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -34,6 +36,7 @@
 
     <TextView
         android:id="@+id/nameLabel"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/first_and_last_name"
@@ -47,6 +50,7 @@
 
     <TextView
         android:id="@+id/contactLabel"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/contact_number"
@@ -60,6 +64,7 @@
 
     <TextView
         android:id="@+id/contact_student"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="236dp"
@@ -73,6 +78,7 @@
 
     <TextView
         android:id="@+id/fullname_student"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="236dp"
@@ -85,6 +91,7 @@
 
     <TextView
         android:id="@+id/emailLabel"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/e_mail"
@@ -98,6 +105,7 @@
 
     <TextView
         android:id="@+id/email_student"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="236dp"
@@ -117,8 +125,10 @@
 
     <Button
         android:id="@+id/save_button1"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#3D3D3D"
         android:text="@string/edit_profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,8 +139,10 @@
 
     <Button
         android:id="@+id/logout_student"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#b23b3b"
         android:text="@string/logout_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/save_button1"
