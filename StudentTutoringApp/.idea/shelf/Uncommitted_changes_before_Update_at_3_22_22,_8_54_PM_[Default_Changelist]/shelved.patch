@@ -1,0 +1,19 @@
+Index: app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studenttutoring.tutorpage;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport android.os.Bundle;\n\npublic class EditTutorPage extends AppCompatActivity {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_edit_tutor_page);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java b/app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java
+--- a/app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java	(revision 721b40c7ce296363396b727021f0449fd5d7aa46)
++++ b/app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java	(date 1648000360420)
+@@ -9,6 +9,6 @@
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_edit_tutor_page);
++        setContentView(Rg.layout.activity_edit_tutor_page);
+     }
+ }
+\ No newline at end of file
