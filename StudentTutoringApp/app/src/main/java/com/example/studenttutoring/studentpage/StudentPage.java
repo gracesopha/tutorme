@@ -62,7 +62,6 @@ public class StudentPage extends Fragment {
         catch (Exception ex) {
             Log.e("Error", ex.getMessage());
         }
-
         // Logout button
         logoutButton = (Button) v.findViewById(R.id.logout_student);
         logoutButton.setOnClickListener(new View.OnClickListener() {
