@@ -61,6 +61,7 @@ public class LoginPage extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Email or Password does not exist", Toast.LENGTH_SHORT).show();
                         } else {
                             String accType = "0";
+                            userEmail = pulledEmail;
                             String query2 = String.format("SELECT type FROM LOGIN_ACCT where (email='%1$s') AND (password='%2$s');", pulledEmail, pulledPass);//Insert Query here
                             Log.d(TAG, "onClick: "+query2);
                             ResultSet rs2 = st.executeQuery(query2);

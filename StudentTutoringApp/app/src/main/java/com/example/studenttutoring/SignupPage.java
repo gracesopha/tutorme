@@ -40,7 +40,6 @@ public class SignupPage extends AppCompatActivity {
             yesTutor = "1";
         } else
             yesTutor = "0";
-
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { submit(); }
         });
