@@ -66,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="236dp"
         android:gravity="left"
+        android:hint="111-111-1111"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -78,6 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="236dp"
         android:gravity="left"
+        android:hint="First, Last"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -101,11 +103,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="236dp"
+        android:hint="abc@gmail.com"
         android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.436"/>
+        app:layout_constraintVertical_bias="0.436" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
