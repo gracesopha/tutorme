@@ -31,7 +31,6 @@ public class LoginPage extends AppCompatActivity {
     private static final String TAG = "LoginPage";
     public static String userEmail = "";
 
-
     public static void main (String[] args) {
         new LoginPage();
     }
@@ -52,7 +51,7 @@ public class LoginPage extends AppCompatActivity {
                     ConnectionHelper connectionHelper = new ConnectionHelper();
                     connect = connectionHelper.connectionclass();
                     if(connect!=null){
-                        String query = String.format("SELECT * FROM LOGIN_ACCT where (email='%1$s') AND (password='%2$s');",pulledEmail,pulledPass);//Insert Query here
+                        String query = String.format("SELECT * FROM LOGIN_ACCT where (email='%1$s') AND (password='%2$s');", pulledEmail, pulledPass);//Insert Query here
                         Log.d(TAG, "onClick: "+query);
                         Statement st = connect.createStatement();
                         ResultSet rs = st.executeQuery(query);
