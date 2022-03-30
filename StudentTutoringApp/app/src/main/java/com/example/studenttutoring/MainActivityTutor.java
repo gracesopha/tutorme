@@ -43,6 +43,10 @@ public class MainActivityTutor extends AppCompatActivity implements BottomNaviga
             case R.id.navigation_calendar:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, thirdFragment).commit();
                 return true;
+
+            case R.id.navigation_availability:
+                startActivity((new Intent(this, TutorAvailability.class)));
+                return true;
         }
         return false;
     }
