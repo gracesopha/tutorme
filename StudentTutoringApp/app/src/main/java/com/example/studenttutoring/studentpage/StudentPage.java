@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.studenttutoring.ConnectionHelper;
+import com.example.studenttutoring.EditStudentPage;
 import com.example.studenttutoring.EditTutorPage;
 import com.example.studenttutoring.LoginPage;
 import com.example.studenttutoring.R;
@@ -77,15 +78,15 @@ public class StudentPage extends Fragment {
         });
 
         // Edit Button
-        // editButton = (Button) v.findViewById(R.id.edit_profile_button);
-        /*editButton.setOnClickListener(new View.OnClickListener() {
+        editButton = (Button) v.findViewById(R.id.edit_student);
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(), EditTutorPage.class);
+                Intent i = new Intent(getActivity(), EditStudentPage.class);
                 startActivity(i);
                 ((Activity) getActivity()).overridePendingTransition(0,0);
             }
-        }); */
+        });
         return v;
     }
 

@@ -124,7 +124,7 @@
         app:layout_constraintGuide_begin="20dp" />
 
     <Button
-        android:id="@+id/save_button1"
+        android:id="@+id/edit_student"
         android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
         android:backgroundTint="#b23b3b"
         android:text="@string/logout_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/save_button1"
+        app:layout_constraintEnd_toStartOf="@+id/edit_student"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
