@@ -27,6 +27,7 @@ public class StudentPage extends Fragment {
     private static final String TAG = "StudentPage";
     private TextView name, email, phone, welcomeName;
     private Button logoutButton;
+    private Button editButton;
     private Connection connect;
 
     public static StudentPage newInstance() {
@@ -40,6 +41,7 @@ public class StudentPage extends Fragment {
         email = v.findViewById(R.id.email_student);
         name = v.findViewById(R.id.fullname_student);
         phone = v.findViewById(R.id.contact_student);
+
         welcomeName = v.findViewById(R.id.student_name);
 
         // First Name and Last Name
@@ -72,6 +74,17 @@ public class StudentPage extends Fragment {
                 ((Activity) getActivity()).overridePendingTransition(0,0);
             }
         });
+
+        // Edit Button
+        // editButton = (Button) v.findViewById(R.id.edit_profile_button);
+        /*editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), EditTutorPage.class);
+                startActivity(i);
+                ((Activity) getActivity()).overridePendingTransition(0,0);
+            }
+        }); */
         return v;
     }
 
