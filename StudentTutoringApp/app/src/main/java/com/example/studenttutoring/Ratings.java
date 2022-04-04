@@ -95,7 +95,7 @@ public class Ratings extends AppCompatActivity {
             Connection conn;
             String comment_text = comment.getText().toString();
             String name_text = name.getText().toString();
-            int ratings_value = (reccomend) ? (1) : (0);
+            double ratings_value = (reccomend) ? (1.0) : (0.0);
             //Log.v("comment_text:",comment_text);
             //Log.v("name_text", name_text);
             //Log.v("recommend:", String.valueOf(reccomend));
