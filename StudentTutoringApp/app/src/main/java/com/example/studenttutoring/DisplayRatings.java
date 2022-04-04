@@ -33,20 +33,16 @@ public class DisplayRatings extends AppCompatActivity {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             conn = connectionHelper.connectionclass();
             Statement st = conn.createStatement();
-            String query = "SELECT name, recommend " + "FROM REVIEW";
+            String query = "SELECT name, AVG(recommend) AS avgRecommend " + "FROM REVIEW "
+                    + " GROUP BY name "
+                    + " ORDER BY avgRecommend DESC";
             //String query = "SELECT name " + "FROM REVIEW";
             ResultSet rs = st.executeQuery(query);
             //rs.next();  //moving cursor to first row
             //Log.v("connection test:",rs.getString(1));
             String name = "";
-            List<String> namesList = new ArrayList<>();
-            HashMap<String, Double> dataHashMap = new HashMap<>();
-            HashMap<String, Integer> countHashMap = new HashMap<>();
-            HashMap<String, Double> avgHashMap = new HashMap<>();
             String result = null;
             double rating = 0;
-            int temp = 0;
-            double average = 0;
             if (!rs.next()){    // if we have no data in REVIEW table. Moves cursor forward
                 Toast.makeText(this, "No reviews have been submitted yet", Toast.LENGTH_LONG).show();
             }
@@ -55,30 +51,13 @@ public class DisplayRatings extends AppCompatActivity {
                 while (rs.next()){  //move cursor forward
                     name = rs.getString(1);     //first col in rs
                     rating = rs.getDouble(2);    //second col in rs
-                    Log.v("connection test:",name);
-                    Log.v("connection test:",String.valueOf(rating));
-
-                    if (dataHashMap.containsKey(name)){
-                        countHashMap.put(name, countHashMap.get(name) + 1);
-                        dataHashMap.put(name, dataHashMap.get(name) + rating);
-                    }
-                    else{
-                        dataHashMap.put(name, rating);
-                        countHashMap.put(name, 1);
-                    }
+                    //Log.v("connection test:",name);
+                    //Log.v("connection test:",String.valueOf(rating));
+                    rating *= 100;
+                    result = String.format("%.0f", rating);     //round to whole number
+                    ratings.append(name + " : \t\t" + result + "%"+"\n\n\n");
                 }
-                for(String key: dataHashMap.keySet()){
-                    average = (dataHashMap.get(key)/countHashMap.get(key)) * 100 ;
-                    //avgHashMap.put(key, average);
-                    result = String.format("%.0f", average);
-                    ratings.append(key + " : \t\t" + result + "%"+"\n\n\n");
-                }
-
-
-
             }
-
-
         }catch (Exception ex){
             Log.e("Error",ex.getMessage());
         }
