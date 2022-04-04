@@ -139,7 +139,7 @@
         app:layout_constraintGuide_begin="20dp" />
 
     <Button
-        android:id="@+id/save_button1"
+        android:id="@+id/edit_profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/edit_profile"
@@ -160,7 +160,7 @@
         android:fontFamily="@font/ralewayregular"
         android:backgroundTint="#b23b3b"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/save_button1"
+        app:layout_constraintEnd_toStartOf="@+id/edit_profile_button"
         app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

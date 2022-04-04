@@ -11,4 +11,9 @@
         android:icon="@drawable/calendar"
         android:title="@string/calendar" />
 
+    <item
+        android:id="@+id/navigation_availability"
+        android:icon="@drawable/ic_baseline_access_time_24"
+        android:title="Availability" />
+
 </menu>

@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.studenttutoring.ConnectionHelper;
+import com.example.studenttutoring.EditStudentPage;
+import com.example.studenttutoring.EditTutorPage;
 import com.example.studenttutoring.LoginPage;
 import com.example.studenttutoring.R;
 
@@ -25,8 +27,10 @@ import java.sql.Statement;
 
 public class StudentPage extends Fragment {
     private static final String TAG = "StudentPage";
-    private TextView name, email, phone;
+    private TextView name, email, phone, welcomeName;
     private Button logoutButton;
+    private Button editButton;
+    private Connection connect;
 
     public static StudentPage newInstance() {
         return new StudentPage();
@@ -39,35 +43,46 @@ public class StudentPage extends Fragment {
         email = v.findViewById(R.id.email_student);
         name = v.findViewById(R.id.fullname_student);
         phone = v.findViewById(R.id.contact_student);
+
+        welcomeName = v.findViewById(R.id.student_name);
+
         // First Name and Last Name
-        Connection connect;
-        String firstName = "";
-        String lastName = "";
         try {
-            ConnectionHelper conn = new ConnectionHelper();
-            connect = conn.connectionclass();
-            if(connect != null) {
-                String query = "select * from LOGIN_ACCT";
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connectionclass();
+            if (connect != null) {
+                String query = String.format("SELECT * FROM LOGIN_ACCT where (email='%1$s');", LoginPage.userEmail);//Insert Query here
+                Log.d(TAG, "Student: " + query);
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(query);
-
-                while(rs.next()) {
-                    firstName = rs.getString("firstname");
-                    lastName = rs.getString("lastname");
-                    Log.d(TAG, "StudentPage : Pulled Name : " + firstName + " " + lastName);
-                }
+                rs.last();
+                String tutorName = rs.getString("firstname") + " " + rs.getString("lastname");
+                name.setText(tutorName);
+                welcomeName.setText(tutorName);
+                email.setText(rs.getString("email"));
+                phone.setText(rs.getString("contactnum"));
             }
         }
         catch (Exception ex) {
             Log.e("Error", ex.getMessage());
         }
-
         // Logout button
         logoutButton = (Button) v.findViewById(R.id.logout_student);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), LoginPage.class);
+                startActivity(i);
+                ((Activity) getActivity()).overridePendingTransition(0,0);
+            }
+        });
+
+        // Edit Button
+        editButton = (Button) v.findViewById(R.id.edit_student);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), EditStudentPage.class);
                 startActivity(i);
                 ((Activity) getActivity()).overridePendingTransition(0,0);
             }

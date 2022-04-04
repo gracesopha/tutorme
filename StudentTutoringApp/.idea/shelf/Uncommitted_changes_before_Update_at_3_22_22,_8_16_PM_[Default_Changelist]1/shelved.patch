@@ -1,0 +1,224 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"DesignSurface\">\n    <option name=\"filePathToZoomLevelMap\">\n      <map>\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.37864583333333335\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/home.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/text_field_bg.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml\" value=\"0.30687830687830686\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.3625\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.18541666666666667\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.18541666666666667\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml\" value=\"0.3625\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.18541666666666667\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.5\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.21422101449275363\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.3582427536231884\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml\" value=\"0.3875\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.2595\" />\n        <entry key=\"app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2595\" />\n        <entry key=\"app/src/main/res/layout-land/activity_main.xml\" value=\"0.12604166666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_login_page.xml\" value=\"0.27322794596354166\" />\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.19635416666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_signup_page.xml\" value=\"0.19635416666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_tutor_page.xml\" value=\"0.25\" />\n        <entry key=\"app/src/main/res/layout/activity_tutor_pay.xml\" value=\"0.2545289855072464\" />\n        <entry key=\"app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.28804347826086957\" />\n        <entry key=\"app/src/main/res/layout/student_page_fragment.xml\" value=\"0.1691975911458333\" />\n        <entry key=\"app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.2931747436523438\" />\n        <entry key=\"app/src/main/res/menu/bottom_nav.xml\" value=\"0.1\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -31,6 +31,7 @@
+         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2595" />
+         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
+         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.12604166666666666" />
++        <entry key="app/src/main/res/layout/activity_edit_tutor_page.xml" value="0.3094916081082994" />
+         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.27322794596354166" />
+         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
+         <entry key="app/src/main/res/layout/activity_signup_page.xml" value="0.19635416666666666" />
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"com.example.studenttutoring\">\n\n    <uses-permission android:name=\"android.permission.INTERNET\" />\n    <uses-permission android:name=\"android.permission.ACCESS.NETWORK.STATE\" />\n\n    <application\n        android:allowBackup=\"true\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.StudentTutoring\">\n        <activity\n            android:name=\".SignupPage\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".RatingsConfirmation\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".LoginPage\"\n            android:exported=\"true\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n        <activity\n            android:name=\".MainActivity\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".Ratings\"\n            android:exported=\"false\" />\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	
++++ b/app/src/main/AndroidManifest.xml	
+@@ -13,6 +13,9 @@
+         android:supportsRtl="true"
+         android:theme="@style/Theme.StudentTutoring">
+         <activity
++            android:name=".tutorpage.EditTutorPage"
++            android:exported="false" />
++        <activity
+             android:name=".SignupPage"
+             android:exported="false" />
+         <activity
+Index: app/src/main/res/layout/activity_edit_tutor_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_edit_tutor_page.xml b/app/src/main/res/layout/activity_edit_tutor_page.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/layout/activity_edit_tutor_page.xml	
+@@ -0,0 +1,130 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/frameLayout2"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".tutorpage.TutorPage">
++
++    <TextView
++        android:id="@+id/fullnameLabel"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="First Name"
++        android:textStyle="bold"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.108"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.282" />
++
++    <TextView
++        android:id="@+id/fullnameLabel2"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Last Name"
++        android:textStyle="bold"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.107"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.361" />
++
++    <TextView
++        android:id="@+id/contactLabel"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="@string/contact_number"
++        android:textStyle="bold"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.119"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.522" />
++
++    <TextView
++        android:id="@+id/contact_tutor"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:gravity="left"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.498"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.52" />
++
++    <TextView
++        android:id="@+id/resumeLabel"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="@string/resume"
++        android:textStyle="bold"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.102"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.614" />
++
++    <TextView
++        android:id="@+id/fullname_tutor"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:gravity="left"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.498"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.28" />
++
++    <TextView
++        android:id="@+id/emailLabel"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="@string/e_mail"
++        android:textStyle="bold"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.099"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.438" />
++
++    <TextView
++        android:id="@+id/email_tutor"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:textAlignment="textStart"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.498"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.436" />
++
++    <androidx.constraintlayout.widget.Guideline
++        android:id="@+id/guideline2"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:orientation="vertical"
++        app:layout_constraintGuide_begin="20dp" />
++
++    <Button
++        android:id="@+id/edit_button"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="@string/edit_profile"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.78" />
++
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+Index: app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java b/app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java	
+@@ -0,0 +1,14 @@
++package com.example.studenttutoring.tutorpage;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.os.Bundle;
++
++public class EditTutorPage extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_edit_tutor_page);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <string name=\"app_name\">Student Tutoring</string>\n    <!-- TODO: Remove or change this placeholder text -->\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\n\n    <string-array name=\"subject_array\">\n        <item>English</item>\n        <item>Science</item>\n        <item>Math</item>\n        <item>Technology</item>\n        <item>Engineering</item>\n        <item>Communications</item>\n        <item>Other</item>\n    </string-array>\n    <string name=\"sub_spinner\">Select Your Subject</string>\n    <string name=\"ratings_title_text_view\">Leave a review!</string>\n    <string name=\"numerical_ratings_text_view\">Numerical Rating</string>\n    <string name=\"numerical_ratings_input\">Enter Rating</string>\n    <string name=\"comments_text_view\">Comments:</string>\n    <string name=\"comments_input\">Enter Comment</string>\n    <string name=\"submit_button\">Submit</string>\n    <string name=\"cancel_button\">Cancel</string>\n    <string name=\"logout_button\">Log Out</string>\n    <string name = \"sign_up\"> <u>Sign Up</u> </string>\n    <string name = \"welcome_back\">Welcome back! Please login to your account</string>\n\n    <!-->Sunny's strings<!-->\n    <string name=\"ratings_title\">Rate A Tutor</string>\n    <string name=\"tutor_name_textview\">Tutor Name…</string>\n    <string name=\"tutor_name_single_line\">Name</string>\n    <string name=\"comments_textview\">Comments:</string>\n    <string name=\"comments_multi_line\">Add Comment…</string>\n    <string name=\"recommend_tutor_textview\">Recommend Tutor?</string>\n    <string name=\"no_text_view\">No</string>\n    <string name=\"yes_text_view\">Yes</string>\n    <string name=\"cancel_button_text\">Cancel</string>\n    <string name=\"submit_button_text\">Submit</string>\n    <string name=\"go_home_button\">Home</string>\n    <string name=\"confirmation_text_view\">Your review has been sent!</string>\n    <string name=\"thank_you_text_view\">Thank You!</string>\n    <string name=\"login\">LogIn</string>\n    <string name=\"calendar\">Calendar</string>\n    <string name=\"profile\">Profile</string>\n    <string name=\"rating\">Rating</string>\n    <string name=\"home\">Home</string>\n    <string name=\"first_and_last_name\">First and Last Name</string>\n    <string name=\"e_mail\">E-Mail</string>\n    <string name=\"contact_number\">Contact Number</string>\n    <string name=\"resume\">Resume</string>\n    <string name=\"edit_profile\">EDIT PROFILE</string>\n    <string name=\"_111_111_1111\">111-111-1111</string>\n    <string name=\"john_doe\">John Doe</string>\n    <string name=\"johndoe_email_com\">johndoe@email.com</string>\n    <string name=\"welcome_joe\">Welcome, Joe!</string>\n    <string name=\"student_tutoring_login\">Student Tutoring Login</string>\n    <string name=\"no_account_sign_up_here\">No account? Sign Up Here!</string>\n    <string name=\"password\">Password</string>\n    <string name=\"abc_gmail_com\">abc@gmail.com</string>\n    <string name=\"first_name\">First Name</string>\n    <string name=\"last_name\">Last Name</string>\n    <string name=\"phone_number\">Phone Number</string>\n    <string name=\"sign_up_for_tutoring\">Sign Up for Tutoring</string>\n    <string name=\"welcome\">Welcome,</string>\n    <string name=\"x\">X</string>\n\n\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	
++++ b/app/src/main/res/values/strings.xml	
+@@ -21,8 +21,8 @@
+     <string name="submit_button">Submit</string>
+     <string name="cancel_button">Cancel</string>
+     <string name="logout_button">Log Out</string>
+-    <string name = "sign_up"> <u>Sign Up</u> </string>
+-    <string name = "welcome_back">Welcome back! Please login to your account</string>
++    <string name="sign_up"> <u>Sign Up</u> </string>
++    <string name="welcome_back">Welcome back! Please login to your account</string>
+ 
+     <!-->Sunny's strings<!-->
+     <string name="ratings_title">Rate A Tutor</string>

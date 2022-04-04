@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.studenttutoring.ConnectionHelper;
+import com.example.studenttutoring.EditTutorPage;
 import com.example.studenttutoring.LoginPage;
 import com.example.studenttutoring.MainActivity;
 import com.example.studenttutoring.R;
@@ -33,8 +34,7 @@ public class TutorPage extends Fragment {
     private TextView welcomeName;
     private Connection connect;
     Button logoutButton;
-
-
+    Button editButton;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -65,10 +65,21 @@ public class TutorPage extends Fragment {
         }
 
         logoutButton = (Button) v.findViewById(R.id.logout_tutor);
+        editButton = (Button) v.findViewById(R.id.edit_profile_button);
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), LoginPage.class);
+                startActivity(i);
+                ((Activity) getActivity()).overridePendingTransition(0,0);
+            }
+        });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), EditTutorPage.class);
                 startActivity(i);
                 ((Activity) getActivity()).overridePendingTransition(0,0);
             }
