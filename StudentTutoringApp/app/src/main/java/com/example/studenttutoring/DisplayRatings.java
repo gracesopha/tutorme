@@ -54,8 +54,7 @@ public class DisplayRatings extends AppCompatActivity {
                     //Log.v("connection test:",name);
                     //Log.v("connection test:",String.valueOf(rating));
                     rating *= 100;
-                    result = String.format("%.0f", rating);     //round to whole number
-                    ratings.append(name + " : \t\t" + result + "%"+"\n\n\n");
+                    ratings.append(String.format("%-15s %15.0f%% %n%n%n", name, rating));
                 }
             }
         }catch (Exception ex){
