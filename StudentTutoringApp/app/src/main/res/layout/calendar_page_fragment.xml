@@ -8,36 +8,34 @@
     tools:context=".calendarpage.CalendarPage">
 
 
-
-
     <RelativeLayout
         android:id="@+id/spinnerBg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="24dp"
         android:layout_weight=".28"
         android:background="@drawable/calendar_spinner_bg"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginTop="20dp">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/textView19">
 
         <Spinner
             android:id="@+id/subjects_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription='@string/sub_spinner'
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:dropDownWidth="wrap_content"
-            android:visibility="visible"
-            android:background="@android:color/transparent"
-            android:gravity="center"
             android:layout_marginStart="5dp"
-            android:spinnerMode="dropdown" />
+            android:background="@android:color/transparent"
+            android:contentDescription='@string/sub_spinner'
+            android:dropDownWidth="wrap_content"
+            android:gravity="center"
+            android:spinnerMode="dropdown"
+            android:visibility="visible" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -50,12 +48,92 @@
 
     </RelativeLayout>
 
-    <CalendarView
-        android:id="@+id/calendarView"
+    <TextView
+        android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/ralewaybold"
+        android:text="Subject:"
+        android:textColor="#3D3D3D"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerBg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spinnerBg" />
+
+    <TextView
+        android:id="@+id/startTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/ralewaybold"
+        android:text="Start Time:"
+        android:textColor="#3D3D3D"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/startTimeTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/ralewaybold"
+        android:text="End Time:"
+        android:textColor="#3D3D3D"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/endTimeButton"
+        app:layout_constraintTop_toTopOf="@+id/startTimeTextView" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/ralewayblack"
+        android:text="Tutor Search"
+        android:textColor="#3D3D3D"
+        android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerBg" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/startTimeButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="#3D3D3D"
+        android:fontFamily="@font/ralewayregular"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="Select\nTime"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/startTimeTextView"
+        app:layout_constraintStart_toEndOf="@+id/startTimeTextView"
+        app:layout_constraintTop_toTopOf="@+id/startTimeTextView" />
+
+    <Button
+        android:id="@+id/endTimeButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#3d3d3d"
+        android:fontFamily="@font/ralewayregular"
+        android:text="Select\nTime"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/startTimeTextView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/startTimeTextView2" />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="270dp"
+        android:layout_height="303dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startTimeButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
