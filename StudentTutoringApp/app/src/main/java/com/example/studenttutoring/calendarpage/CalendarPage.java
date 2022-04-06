@@ -24,6 +24,10 @@ import com.example.studenttutoring.MainActivity;
 import com.example.studenttutoring.R;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class CalendarPage extends Fragment {
@@ -35,6 +39,7 @@ public class CalendarPage extends Fragment {
     }
     Button startTimeButton, endTimeButton;
     int sHour,sMinute,eHour,eMinute;
+    LocalTime startTime,endTime;
     CalendarView calendar;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -72,17 +77,21 @@ public class CalendarPage extends Fragment {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("h:mm a");
                 switch(view.getId()) {
                     case R.id.startTimeButton:
                         sHour = selectedHour;
                         sMinute = selectedMinute;
-                        startTimeButton.setText(String.format(Locale.getDefault(), "%02d:%02d %s", sHour < 13 ? sHour == 0 ? 12 : sHour : sHour - 12, sMinute, sHour < 12 ? "AM" : "PM"));
+                        startTime = LocalTime.of(sHour,sMinute);
+                        startTimeButton.setText(startTime.format(dtf));
+                        Log.d(TAG, "onTimeSet: time is : "+startTime.format(dtf));
                         break;
                     case R.id.endTimeButton:
                         eHour = selectedHour;
                         eMinute = selectedMinute;
-                        endTimeButton.setText(String.format(Locale.getDefault(), "%02d:%02d %s", eHour < 13 ? eHour == 0 ? 12 : eHour : eHour - 12, eMinute, eHour < 12 ? "AM" : "PM"));
-
+                        endTime = LocalTime.of(eHour,eMinute);
+                        endTimeButton.setText(endTime.format(dtf));
+                        Log.d(TAG, "onTimeSet: time is : "+endTime.format(dtf));
                 }
             }
         };
