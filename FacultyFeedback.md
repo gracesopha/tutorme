@@ -63,7 +63,20 @@ Remember the dry run demo/presentation is on 4/19 and the final class presentati
 
 ## Week 12 - Mar 29 ##
 
+- Sunny:  Working on #36 (I like that you demo your work)
+- Tommy: broke up story  and working  on #51
+- Enrique: closed #42  Working on  #47 and #54 
+- Grace: will complete #37,working #52
+- Lucy: log in page needs tutor or student: finished #53,  working on #43
+
 ## Week 13 - Apr 5 ##
+
+- Tommy: working on #51 (nice demo!) May change calendar to different UX
+- Grace: closed #55 and #37 and added functionality to #36.  Working on #59 and #56
+- Lucy: finished #43, and working on #38 (had Android Studio issued)
+- Sunny finished   #36 and working on #38 or #60
+- Enrique finished #58 working on #54
+
 
 ## Week 14 - Apr 12 ##
 
