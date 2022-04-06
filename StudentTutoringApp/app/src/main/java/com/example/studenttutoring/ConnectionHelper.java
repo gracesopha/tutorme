@@ -25,7 +25,7 @@ public class ConnectionHelper {
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            ConnectionURL = "jdbc:mysql://" + ip + ":" + port +"/" +database;
+            ConnectionURL = "jdbc:mysql://" + ip + ":" + port +"/" + database;
             Log.d(TAG, "ConnectionHelper : The ConnectionURL is : " + ConnectionURL);
             connection = DriverManager.getConnection(ConnectionURL,user,pass);
             Log.d(TAG, "ConnectionHelper : Successful Connection");
