@@ -25,15 +25,15 @@
         android:id="@+id/lastnameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewayregular"
         android:text="Last Name"
         android:textStyle="bold"
-        android:fontFamily="@font/ralewayregular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.361" />
+        app:layout_constraintVertical_bias="0.399" />
 
     <TextView
         android:id="@+id/contactLabel"
@@ -51,6 +51,7 @@
 
     <EditText
         android:id="@+id/contact_tutor"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -75,48 +76,29 @@
 
     <EditText
         android:id="@+id/firstname_tutor"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
+        android:layout_marginTop="106dp"
+        android:layout_marginBottom="28dp"
         android:gravity="left"
         app:layout_constraintBottom_toTopOf="@+id/lastname_tutor"
         app:layout_constraintStart_toEndOf="@+id/firstnameLabel"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <EditText
         android:id="@+id/lastname_tutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
-        android:layout_marginBottom="18dp"
-        android:gravity="left"
-        app:layout_constraintBottom_toTopOf="@+id/email_tutor"
-        app:layout_constraintStart_toEndOf="@+id/lastnameLabel" />
-
-    <TextView
-        android:id="@+id/emailLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/e_mail"
-        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
         android:fontFamily="@font/ralewayregular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
-
-    <TextView
-        android:id="@+id/email_tutor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginBottom="12dp"
-        android:textAlignment="textStart"
+        android:gravity="left"
         app:layout_constraintBottom_toTopOf="@+id/contact_tutor"
-        app:layout_constraintStart_toEndOf="@+id/emailLabel" />
+        app:layout_constraintStart_toEndOf="@+id/lastnameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/firstnameLabel"
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -149,6 +131,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.622" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/ralewaybold"
+        android:text="EDIT PROFILE"
+        android:textColor="#3D3D3D"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
