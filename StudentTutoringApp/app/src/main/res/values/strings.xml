@@ -62,6 +62,7 @@
     <string name="sign_up_for_tutoring">Sign Up for Tutoring</string>
     <string name="welcome">Welcome,</string>
     <string name="x">X</string>
+    <string name="tutoring_availability">Tutoring Availability</string>
 
 
 </resources>
