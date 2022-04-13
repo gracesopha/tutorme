@@ -79,7 +79,7 @@ public class EditStudentPage extends AppCompatActivity {
                             Log.d(TAG, "onClick: Phone Number is empty");
                         } else {
                             // If the phone number is not empty, then update the database
-                            String query = "UPDATE LOGIN_ACCT SET phonenumber = '" + phoneNumberInput + "' WHERE email = '" + LoginPage.userEmail + "'";
+                            String query = "UPDATE LOGIN_ACCT SET contactnum = '" + phoneNumberInput + "' WHERE email = '" + LoginPage.userEmail + "'";
                             Log.d(TAG, "onClick: Query: " + query);
                             Statement st = connect.createStatement();
                             st.executeUpdate(query);
