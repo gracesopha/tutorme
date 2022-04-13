@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="24dp"
-        android:text="Login"
+        android:fontFamily="@font/ralewaybold"
+        android:text="tutorMe"
+        android:textColor="#3D3D3D"
         android:textSize="34sp"
         android:textStyle="bold"
-        android:textColor="#3D3D3D"
-        android:fontFamily="@font/ralewaybold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

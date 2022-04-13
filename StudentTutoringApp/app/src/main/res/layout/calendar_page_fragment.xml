@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:layout_weight=".28"
         android:background="@drawable/calendar_spinner_bg"
@@ -66,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/ralewaybold"
         android:text="Start Time:"
         android:textColor="#3D3D3D"
@@ -115,6 +115,23 @@
         app:layout_constraintTop_toTopOf="@+id/startTimeTextView" />
 
     <Button
+        android:id="@+id/searchButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="48dp"
+        android:backgroundTint="#3D3D3D"
+        android:fontFamily="@font/ralewayregular"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:text="SEARCH"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/calendarView"
+        app:layout_constraintStart_toStartOf="@+id/calendarView"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+    <Button
         android:id="@+id/endTimeButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -129,8 +146,8 @@
 
     <CalendarView
         android:id="@+id/calendarView"
-        android:layout_width="270dp"
-        android:layout_height="303dp"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
