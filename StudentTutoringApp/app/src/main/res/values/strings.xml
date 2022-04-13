@@ -12,6 +12,17 @@
         <item>Communications</item>
         <item>Other</item>
     </string-array>
+
+    <string-array name="weekday_array">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
     <string name="sub_spinner">Select Your Subject</string>
     <string name="ratings_title_text_view">Leave a review!</string>
     <string name="numerical_ratings_text_view">Numerical Rating</string>
