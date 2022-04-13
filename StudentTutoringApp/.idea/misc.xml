@@ -36,6 +36,8 @@
         <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav_tutor.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar.xml" value="0.3565" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml" value="0.3565" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_student_page.xml" value="0.26510416666666664" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_tutor_page.xml" value="0.26510416666666664" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main_tutor.xml" value="0.26510416666666664" />
@@ -45,6 +47,7 @@
         <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.26510416666666664" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/spinner_item.xml" value="0.26510416666666664" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.26510416666666664" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml" value="0.38697916666666665" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2595" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.12604166666666666" />
