@@ -18,7 +18,7 @@ import javax.xml.transform.Result;
 
 public class EditTutorPage extends AppCompatActivity {
 
-    private static final String TAG = "EditStudentPage";
+    private static final String TAG = "EditTutorPage";
     private Button save_button;
     private EditText firstName;
     private EditText lastName;
@@ -64,8 +64,6 @@ public class EditTutorPage extends AppCompatActivity {
                             Statement st = connect.createStatement();
                             st.executeUpdate(query);
                             Log.d(TAG, "onClick: First Name Updated");
-                            // Closing the connection
-                            connect.close();
                         }
                         // checking if last name is empty
                         if (lastNameInput.isEmpty()) {
@@ -77,8 +75,6 @@ public class EditTutorPage extends AppCompatActivity {
                             Statement st = connect.createStatement();
                             st.executeUpdate(query);
                             Log.d(TAG, "onClick: Last Name Updated");
-                            // Closing the connection
-                            connect.close();
                         }
 
                         // checking if phone number is empty
@@ -91,8 +87,6 @@ public class EditTutorPage extends AppCompatActivity {
                             Statement st = connect.createStatement();
                             st.executeUpdate(query);
                             Log.d(TAG, "onClick: Phone Number Updated");
-                            // Closing the connection
-                            connect.close();
                         }
                     }
                 } catch (Exception ex) {

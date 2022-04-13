@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ public class DisplayRatings extends AppCompatActivity {
         Connection conn;
         homeButton = findViewById(R.id.readReviewsHomeButton);
         ratings = findViewById(R.id.ratings_text_view);
+        //ratings.setMovementMethod(new ScrollingMovementMethod());     //correct one
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             conn = connectionHelper.connectionclass();
@@ -56,6 +58,7 @@ public class DisplayRatings extends AppCompatActivity {
                     rating *= 100;
                     ratings.append(String.format("%-15s %15.0f%% %n%n%n", name, rating));
                 }
+                ratings.setMovementMethod(new ScrollingMovementMethod());
             }
         }catch (Exception ex){
             Log.e("Error",ex.getMessage());

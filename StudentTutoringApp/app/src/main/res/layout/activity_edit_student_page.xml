@@ -11,63 +11,57 @@
         android:id="@+id/firstnameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:fontFamily="@font/ralewayregular"
         android:text="First Name"
         android:textStyle="bold"
-        android:fontFamily="@font/ralewayregular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintBottom_toTopOf="@+id/lastnameLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.282" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_title"
+        app:layout_constraintVertical_bias="0.719" />
 
     <TextView
         android:id="@+id/lastnameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="60dp"
+        android:fontFamily="@font/ralewayregular"
         android:text="Last Name"
         android:textStyle="bold"
-        android:fontFamily="@font/ralewayregular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.361" />
+        app:layout_constraintBottom_toTopOf="@+id/contactLabel"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/contactLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="52dp"
+        android:fontFamily="@font/ralewayregular"
         android:text="@string/contact_number"
         android:textStyle="bold"
-        android:fontFamily="@font/ralewayregular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintBottom_toTopOf="@+id/resumeLabel"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/contact_tutor"
+    <EditText
+        android:id="@+id/contact_student"
+        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="27dp"
         android:gravity="left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52" />
+        app:layout_constraintBottom_toTopOf="@+id/upload_resume_button"
+        app:layout_constraintStart_toEndOf="@+id/contactLabel" />
 
     <TextView
         android:id="@+id/resumeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewayregular"
         android:text="@string/resume"
         android:textStyle="bold"
-        android:fontFamily="@font/ralewayregular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
@@ -75,55 +69,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.614" />
 
-    <TextView
-        android:id="@+id/firstname_tutor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
-
-    <TextView
-        android:id="@+id/lastname_tutor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.359" />
-
-    <TextView
-        android:id="@+id/emailLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/e_mail"
-        android:textStyle="bold"
+    <EditText
+        android:id="@+id/firstname_student"
         android:fontFamily="@font/ralewayregular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
-
-    <TextView
-        android:id="@+id/email_tutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.436" />
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="106dp"
+        android:layout_marginBottom="28dp"
+        android:gravity="left"
+        app:layout_constraintBottom_toTopOf="@+id/lastname_student"
+        app:layout_constraintStart_toEndOf="@+id/firstnameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_title" />
+
+    <EditText
+        android:id="@+id/lastname_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/ralewayregular"
+        android:gravity="left"
+        app:layout_constraintBottom_toTopOf="@+id/contact_student"
+        app:layout_constraintStart_toEndOf="@+id/lastnameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/firstnameLabel"
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -148,14 +118,29 @@
         android:id="@+id/upload_resume_button"
         android:layout_width="199dp"
         android:layout_height="42dp"
-        android:text="upload file"
         android:backgroundTint="#3D3D3D"
+        android:text="upload file"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.622" />
+
+    <TextView
+        android:id="@+id/edit_profile_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/ralewaybold"
+        android:text="EDIT PROFILE"
+        android:textColor="#3D3D3D"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
