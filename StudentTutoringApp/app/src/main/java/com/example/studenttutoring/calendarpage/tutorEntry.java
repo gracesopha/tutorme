@@ -1,6 +1,28 @@
 package com.example.studenttutoring.calendarpage;
 
-public class tutorEntry {
+import java.io.Serializable;
+
+public class tutorEntry implements Serializable {
+
+    public String getName() {
+        return name;
+    }
+
+    public String getStart_time() {
+        return start_time;
+    }
+
+    public String getEnd_time() {
+        return end_time;
+    }
+
+    public String getContact_num() {
+        return contact_num;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     private final String name;
     private final String start_time;

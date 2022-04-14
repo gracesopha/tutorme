@@ -1,0 +1,833 @@
+Index: app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studenttutoring.calendarpage;\r\n\r\nimport androidx.lifecycle.ViewModelProvider;\r\n\r\nimport android.app.AlertDialog;\r\nimport android.app.TimePickerDialog;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.CalendarView;\r\nimport android.widget.Spinner;\r\nimport android.widget.TimePicker;\r\n\r\nimport com.example.studenttutoring.MainActivity;\r\nimport com.example.studenttutoring.R;\r\n\r\nimport java.sql.Time;\r\nimport java.time.LocalDateTime;\r\nimport java.time.LocalTime;\r\nimport java.time.ZoneOffset;\r\nimport java.time.format.DateTimeFormatter;\r\nimport java.util.Locale;\r\n\r\npublic class CalendarPage extends Fragment {\r\n    private static final String TAG = \"CalendarPage\";\r\n    private CalendarPageViewModel mViewModel;\r\n    private Spinner spinner;\r\n    public static CalendarPage newInstance() {\r\n        return new CalendarPage();\r\n    }\r\n    Button startTimeButton, endTimeButton;\r\n    int sHour,sMinute,eHour,eMinute;\r\n    LocalTime startTime,endTime;\r\n    CalendarView calendar;\r\n    @Override\r\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,\r\n                             @Nullable Bundle savedInstanceState) {\r\n        View v = inflater.inflate(R.layout.calendar_page_fragment, container, false);\r\n        spinner = v.findViewById(R.id.subjects_spinner);\r\n        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.subject_array, R.layout.spinner_item);\r\n        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        spinner.setAdapter(adapter);\r\n        startTimeButton = v.findViewById(R.id.startTimeButton);\r\n        endTimeButton = v.findViewById(R.id.endTimeButton);\r\n        calendar = v.findViewById(R.id.calendarView);\r\n        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {\r\n\r\n            @Override\r\n            public void onSelectedDayChange(CalendarView view, int year, int month,\r\n                                            int dayOfMonth) {\r\n                String curDate = String.valueOf(dayOfMonth);\r\n                Log.d(TAG, \"onSelectedDayChange: \"+curDate);\r\n            }\r\n        });\r\n        View.OnClickListener timeButtonListener = new View.OnClickListener(){\r\n            @Override\r\n            public void onClick(View view){\r\n                popTimePicker(view);\r\n            }\r\n        };\r\n        startTimeButton.setOnClickListener(timeButtonListener);\r\n        endTimeButton.setOnClickListener(timeButtonListener);\r\n        return v;\r\n\r\n    }\r\n\r\n    public void popTimePicker(View view){\r\n        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {\r\n            @Override\r\n            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {\r\n                DateTimeFormatter dtf = DateTimeFormatter.ofPattern(\"h:mm a\");\r\n                switch(view.getId()) {\r\n                    case R.id.startTimeButton:\r\n                        sHour = selectedHour;\r\n                        sMinute = selectedMinute;\r\n                        startTime = LocalTime.of(sHour,sMinute);\r\n                        startTimeButton.setText(startTime.format(dtf));\r\n                        Log.d(TAG, \"onTimeSet: time is : \"+startTime.format(dtf));\r\n                        break;\r\n                    case R.id.endTimeButton:\r\n                        eHour = selectedHour;\r\n                        eMinute = selectedMinute;\r\n                        endTime = LocalTime.of(eHour,eMinute);\r\n                        endTimeButton.setText(endTime.format(dtf));\r\n                        Log.d(TAG, \"onTimeSet: time is : \"+endTime.format(dtf));\r\n                }\r\n            }\r\n        };\r\n        TimePickerDialog timePickerDialog;\r\n        switch(view.getId()) {\r\n            case R.id.startTimeButton:\r\n                timePickerDialog = new TimePickerDialog(getActivity(), android.R.style.Theme_Holo_Dialog, onTimeSetListener, sHour, sMinute, false);\r\n                break;\r\n            case R.id.endTimeButton:\r\n                timePickerDialog = new TimePickerDialog(getActivity(), android.R.style.Theme_Holo_Dialog, onTimeSetListener, eHour, eMinute, false);\r\n                break;\r\n            default:\r\n                throw new IllegalStateException(\"Unexpected value: \" + view.getId());\r\n        }\r\n        timePickerDialog.setTitle(\"Select Time\");\r\n        timePickerDialog.show();\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java b/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java
+--- a/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ b/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java	(date 1649808453345)
+@@ -19,16 +19,20 @@
+ import android.widget.CalendarView;
+ import android.widget.Spinner;
+ import android.widget.TimePicker;
++import android.widget.Toast;
+ 
+-import com.example.studenttutoring.MainActivity;
++import com.example.studenttutoring.ConnectionHelper;
+ import com.example.studenttutoring.R;
+ 
+-import java.sql.Time;
+-import java.time.LocalDateTime;
++import java.sql.Connection;
++import java.sql.ResultSet;
++import java.sql.Statement;
++import java.time.LocalDate;
+ import java.time.LocalTime;
+-import java.time.ZoneOffset;
+ import java.time.format.DateTimeFormatter;
+-import java.util.Locale;
++import java.util.Calendar;
++import java.util.Date;
++
+ 
+ public class CalendarPage extends Fragment {
+     private static final String TAG = "CalendarPage";
+@@ -37,14 +41,16 @@
+     public static CalendarPage newInstance() {
+         return new CalendarPage();
+     }
+-    Button startTimeButton, endTimeButton;
++    Button startTimeButton, endTimeButton, searchButton;
+     int sHour,sMinute,eHour,eMinute;
+     LocalTime startTime,endTime;
++    LocalDate chosenDate;
+     CalendarView calendar;
+     @Override
+     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                              @Nullable Bundle savedInstanceState) {
+         View v = inflater.inflate(R.layout.calendar_page_fragment, container, false);
++        searchButton = v.findViewById(R.id.searchButton);
+         spinner = v.findViewById(R.id.subjects_spinner);
+         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.subject_array, R.layout.spinner_item);
+         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+@@ -52,13 +58,15 @@
+         startTimeButton = v.findViewById(R.id.startTimeButton);
+         endTimeButton = v.findViewById(R.id.endTimeButton);
+         calendar = v.findViewById(R.id.calendarView);
++        calendar.setMinDate((new Date().getTime()));
+         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+-
+             @Override
+             public void onSelectedDayChange(CalendarView view, int year, int month,
+                                             int dayOfMonth) {
+-                String curDate = String.valueOf(dayOfMonth);
+-                Log.d(TAG, "onSelectedDayChange: "+curDate);
++                chosenDate = LocalDate.of(year,month+1,dayOfMonth);
++                Calendar selected = Calendar.getInstance();
++                selected.set(year,month,dayOfMonth);
++                Log.d(TAG, "onSelectedDayChange: "+selected.get(Calendar.DAY_OF_WEEK));
+             }
+         });
+         View.OnClickListener timeButtonListener = new View.OnClickListener(){
+@@ -69,6 +77,35 @@
+         };
+         startTimeButton.setOnClickListener(timeButtonListener);
+         endTimeButton.setOnClickListener(timeButtonListener);
++        searchButton.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                if(startTime != null && endTime != null && chosenDate != null){
++                    if (startTime.isAfter(endTime)){
++                        Toast.makeText(getActivity(),"Please choose an end time after the start time",Toast.LENGTH_SHORT).show();
++                        return;
++                    }
++                    Connection connect;
++                    try{
++                        ConnectionHelper connectionHelper = new ConnectionHelper();
++                        connect = connectionHelper.connectionclass();
++                        if(connect!=null){
++                            String query = "";//Insert Query here
++                            Statement st = connect.createStatement();
++                            ResultSet rs = st.executeQuery(query);
++                        }
++                    }
++                    catch (Exception ex) {
++                        Log.e("Error",ex.getMessage());
++                    }
++
++
++                } else {
++                    Toast.makeText(getActivity(), "Please fill in all parameters", Toast.LENGTH_SHORT).show();
++                    return;
++                }
++            }
++        });
+         return v;
+ 
+     }
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__7_32_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__7_32_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__7_32_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__7_32_PM__Default_Changelist_.xml	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ /dev/null	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_3_29_22,_7_32_PM_[Default_Changelist]" date="1648600350386" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_7_32_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 3/29/22, 7:32 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_7_32_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_7_32_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_7_32_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_7_32_PM_[Default_Changelist]/shelved.patch	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ /dev/null	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
+@@ -1,21 +0,0 @@
+-Index: .idea/misc.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"DesignSurface\">\n    <option name=\"filePathToZoomLevelMap\">\n      <map>\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.37864583333333335\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/home.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/text_field_bg.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml\" value=\"0.30687830687830686\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.3625\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.18541666666666667\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.18541666666666667\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml\" value=\"0.3625\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.18541666666666667\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.5\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.21422101449275363\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.3582427536231884\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml\" value=\"0.3875\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml\" value=\"0.32760141093474426\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_tutor_page.xml\" value=\"0.19947916666666668\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_main_tutor.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav_tutor.xml\" value=\"0.38697916666666665\" />\n        <entry key=\"app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.2595\" />\n        <entry key=\"app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2595\" />\n        <entry key=\"app/src/main/res/layout-land/activity_main.xml\" value=\"0.12604166666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_login_page.xml\" value=\"0.27322794596354166\" />\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.19635416666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_signup_page.xml\" value=\"0.19635416666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_tutor_page.xml\" value=\"0.25\" />\n        <entry key=\"app/src/main/res/layout/activity_tutor_pay.xml\" value=\"0.2545289855072464\" />\n        <entry key=\"app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.28804347826086957\" />\n        <entry key=\"app/src/main/res/layout/student_page_fragment.xml\" value=\"0.18020833333333333\" />\n        <entry key=\"app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.2931747436523438\" />\n        <entry key=\"app/src/main/res/menu/bottom_nav.xml\" value=\"0.1\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/misc.xml b/.idea/misc.xml
+---- a/.idea/misc.xml	(revision a66025b784a1cb58355b5d4b4060818002d79e8e)
+-+++ b/.idea/misc.xml	(date 1648599571700)
+-@@ -39,8 +39,10 @@
+-         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2595" />
+-         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
+-         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.12604166666666666" />
+-+        <entry key="app/src/main/res/layout/activity_edit_tutor_page.xml" value="0.2453125" />
+-         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.27322794596354166" />
+-         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
+-+        <entry key="app/src/main/res/layout/activity_main_tutor.xml" value="0.2453125" />
+-         <entry key="app/src/main/res/layout/activity_signup_page.xml" value="0.19635416666666666" />
+-         <entry key="app/src/main/res/layout/activity_tutor_page.xml" value="0.25" />
+-         <entry key="app/src/main/res/layout/activity_tutor_pay.xml" value="0.2545289855072464" />
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_29_2022_8_06_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_2022_8_06_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_2022_8_06_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_2022_8_06_PM__Default_Changelist_.xml	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ /dev/null	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_3_29_2022_8_06_PM_[Default_Changelist]" date="1648602477276" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_2022_8_06_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 3/29/2022 8:06 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_29_2022_8_06_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_2022_8_06_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_2022_8_06_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_2022_8_06_PM_[Default_Changelist]/shelved.patch	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ /dev/null	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
+@@ -1,296 +0,0 @@
+-Index: app/src/main/res/layout/calendar_page_fragment.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/frameLayout\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".calendarpage.CalendarPage\">\r\n\r\n\r\n\r\n\r\n    <RelativeLayout\r\n        android:id=\"@+id/spinnerBg\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_weight=\".28\"\r\n        android:background=\"@drawable/calendar_spinner_bg\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.498\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:layout_marginStart=\"80dp\"\r\n        android:layout_marginEnd=\"80dp\"\r\n        android:layout_marginTop=\"20dp\">\r\n\r\n        <Spinner\r\n            android:id=\"@+id/subjects_spinner\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:contentDescription='@string/sub_spinner'\r\n            android:layout_centerVertical=\"true\"\r\n            android:layout_gravity=\"center\"\r\n            android:dropDownWidth=\"wrap_content\"\r\n            android:visibility=\"visible\"\r\n            android:background=\"@android:color/transparent\"\r\n            android:gravity=\"center\"\r\n            android:layout_marginStart=\"5dp\"\r\n            android:spinnerMode=\"dropdown\" />\r\n\r\n        <ImageView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_alignParentEnd=\"true\"\r\n            android:layout_centerVertical=\"true\"\r\n            android:layout_gravity=\"center\"\r\n            android:contentDescription=\"Subjects\"\r\n            android:src=\"@drawable/spinner_dropdown\" />\r\n\r\n    </RelativeLayout>\r\n\r\n    <CalendarView\r\n        android:id=\"@+id/calendarView\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"10dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/spinnerBg\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/res/layout/calendar_page_fragment.xml b/app/src/main/res/layout/calendar_page_fragment.xml
+---- a/app/src/main/res/layout/calendar_page_fragment.xml	(revision b0f85bf7c81368b242ef287bcb8fcc98df724e19)
+-+++ b/app/src/main/res/layout/calendar_page_fragment.xml	(date 1648602255541)
+-@@ -8,36 +8,34 @@
+-     tools:context=".calendarpage.CalendarPage">
+- 
+- 
+--
+--
+-     <RelativeLayout
+-         android:id="@+id/spinnerBg"
+-         android:layout_width="match_parent"
+-         android:layout_height="wrap_content"
+-+        android:layout_marginStart="100dp"
+-+        android:layout_marginTop="40dp"
+-+        android:layout_marginEnd="24dp"
+-         android:layout_weight=".28"
+-         android:background="@drawable/calendar_spinner_bg"
+-         android:orientation="horizontal"
+-         app:layout_constraintEnd_toEndOf="parent"
+--        app:layout_constraintHorizontal_bias="0.498"
+--        app:layout_constraintStart_toStartOf="parent"
+--        app:layout_constraintTop_toTopOf="parent"
+--        android:layout_marginStart="80dp"
+--        android:layout_marginEnd="80dp"
+--        android:layout_marginTop="20dp">
+-+        app:layout_constraintHorizontal_bias="0.0"
+-+        app:layout_constraintStart_toEndOf="@+id/textView17"
+-+        app:layout_constraintTop_toBottomOf="@+id/textView19">
+- 
+-         <Spinner
+-             android:id="@+id/subjects_spinner"
+-             android:layout_width="match_parent"
+-             android:layout_height="wrap_content"
+--            android:contentDescription='@string/sub_spinner'
+-             android:layout_centerVertical="true"
+-             android:layout_gravity="center"
+-+            android:layout_marginStart="5dp"
+-+            android:background="@android:color/transparent"
+-+            android:contentDescription='@string/sub_spinner'
+-             android:dropDownWidth="wrap_content"
+--            android:visibility="visible"
+--            android:background="@android:color/transparent"
+-             android:gravity="center"
+--            android:layout_marginStart="5dp"
+--            android:spinnerMode="dropdown" />
+-+            android:spinnerMode="dropdown"
+-+            android:visibility="visible" />
+- 
+-         <ImageView
+-             android:layout_width="wrap_content"
+-@@ -50,12 +48,83 @@
+- 
+-     </RelativeLayout>
+- 
+--    <CalendarView
+--        android:id="@+id/calendarView"
+-+    <TextView
+-+        android:id="@+id/textView17"
+-+        android:layout_width="wrap_content"
+-+        android:layout_height="wrap_content"
+-+        android:layout_marginStart="16dp"
+-+        android:fontFamily="@font/ralewaybold"
+-+        android:text="Subject:"
+-+        android:textColor="#3D3D3D"
+-+        android:textSize="16dp"
+-+        app:layout_constraintBottom_toBottomOf="@+id/spinnerBg"
+-+        app:layout_constraintStart_toStartOf="parent"
+-+        app:layout_constraintTop_toTopOf="@+id/spinnerBg" />
+-+
+-+    <TextView
+-+        android:id="@+id/startTimeTextView"
+-         android:layout_width="wrap_content"
+-         android:layout_height="wrap_content"
+--        android:layout_marginTop="10dp"
+-+        android:layout_marginStart="16dp"
+-+        android:layout_marginTop="40dp"
+-+        android:fontFamily="@font/ralewaybold"
+-+        android:text="Start Time:"
+-+        android:textColor="#3D3D3D"
+-+        android:textSize="16dp"
+-+        app:layout_constraintStart_toStartOf="parent"
+-+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+-+
+-+    <TextView
+-+        android:id="@+id/startTimeTextView2"
+-+        android:layout_width="wrap_content"
+-+        android:layout_height="wrap_content"
+-+        android:layout_marginEnd="8dp"
+-+        android:fontFamily="@font/ralewaybold"
+-+        android:text="End Time:"
+-+        android:textColor="#3D3D3D"
+-+        android:textSize="16dp"
+-+        app:layout_constraintEnd_toStartOf="@+id/endTimeButton"
+-+        app:layout_constraintTop_toTopOf="@+id/startTimeTextView" />
+-+
+-+    <TextView
+-+        android:id="@+id/textView19"
+-+        android:layout_width="wrap_content"
+-+        android:layout_height="wrap_content"
+-+        android:layout_marginTop="16dp"
+-+        android:fontFamily="@font/ralewayblack"
+-+        android:text="Tutor Search"
+-+        android:textColor="#3D3D3D"
+-+        android:textSize="32dp"
+-         app:layout_constraintEnd_toEndOf="parent"
+-         app:layout_constraintStart_toStartOf="parent"
+--        app:layout_constraintTop_toBottomOf="@+id/spinnerBg" />
+-+        app:layout_constraintTop_toTopOf="parent" />
+-+
+-+    <Button
+-+        android:id="@+id/startTimeButton"
+-+        android:layout_width="100dp"
+-+        android:layout_height="wrap_content"
+-+        android:layout_marginStart="8dp"
+-+        android:backgroundTint="#3D3D3D"
+-+        android:fontFamily="@font/ralewayregular"
+-+        android:paddingStart="0dp"
+-+        android:paddingEnd="0dp"
+-+        android:text="Select\nTime"
+-+        android:textSize="12dp"
+-+        app:layout_constraintBottom_toBottomOf="@+id/startTimeTextView"
+-+        app:layout_constraintStart_toEndOf="@+id/startTimeTextView"
+-+        app:layout_constraintTop_toTopOf="@+id/startTimeTextView" />
+-+
+-+    <Button
+-+        android:id="@+id/endTimeButton"
+-+        android:layout_width="100dp"
+-+        android:layout_height="wrap_content"
+-+        android:layout_marginEnd="8dp"
+-+        android:backgroundTint="#3d3d3d"
+-+        android:fontFamily="@font/ralewayregular"
+-+        android:text="Select\nTime"
+-+        android:textSize="12dp"
+-+        app:layout_constraintBottom_toBottomOf="@+id/startTimeTextView2"
+-+        app:layout_constraintEnd_toEndOf="parent"
+-+        app:layout_constraintTop_toTopOf="@+id/startTimeTextView2" />
+-+
+- </androidx.constraintlayout.widget.ConstraintLayout>
+-Index: app/build.gradle
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>plugins {\r\n    id 'com.android.application'\r\n}\r\n\r\nandroid {\r\n    compileSdk 32\r\n\r\n    defaultConfig {\r\n        applicationId \"com.example.studenttutoring\"\r\n        minSdk 27\r\n        targetSdk 32\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n    implementation 'androidx.appcompat:appcompat:1.4.1'\r\n    implementation 'com.google.android.material:material:1.5.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'\r\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\r\n    implementation 'com.android.support.constraint:constraint-layout:1.0.2'\r\n    implementation 'androidx.navigation:navigation-fragment:2.4.1'\r\n    implementation 'androidx.navigation:navigation-ui:2.4.1'\r\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'\r\n    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'\r\n    implementation files('libs\\\\jtds-1.3.1.jar')\r\n    implementation files('libs\\\\mysql-connector-java-5.1.49.jar')\r\n    testImplementation 'junit:junit:4.+'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.3'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'\r\n}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/build.gradle b/app/build.gradle
+---- a/app/build.gradle	(revision b0f85bf7c81368b242ef287bcb8fcc98df724e19)
+-+++ b/app/build.gradle	(date 1648598290039)
+-@@ -34,6 +34,7 @@
+-     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+-     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+-     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+-+    implementation 'com.squareup:android-times-square:1.6.5@aar'
+-     implementation 'androidx.navigation:navigation-fragment:2.4.1'
+-     implementation 'androidx.navigation:navigation-ui:2.4.1'
+-     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+-Index: app/src/main/res/layout/spinner_item.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/res/layout/spinner_item.xml b/app/src/main/res/layout/spinner_item.xml
+-new file mode 100644
+---- /dev/null	(date 1648599607707)
+-+++ b/app/src/main/res/layout/spinner_item.xml	(date 1648599607707)
+-@@ -0,0 +1,12 @@
+-+<?xml version="1.0" encoding="utf-8"?>
+-+
+-+<TextView
+-+    xmlns:android="http://schemas.android.com/apk/res/android"
+-+    android:layout_width="match_parent"
+-+    android:layout_height="wrap_content"
+-+    android:textSize="20sp"
+-+    android:gravity="left"
+-+    android:textColor="#3D3D3D"
+-+    android:fontFamily="@font/ralewayregular"
+-+    android:padding="5dip"
+-+    />
+-\ No newline at end of file
+-Index: .idea/misc.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.37864583333333335\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/home.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/text_field_bg.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml\" value=\"0.30687830687830686\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.3625\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml\" value=\"0.3625\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.2765625\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.21422101449275363\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.3582427536231884\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.2765625\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml\" value=\"0.3875\" />\r\n        <entry key=\"app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.2595\" />\r\n        <entry key=\"app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2595\" />\r\n        <entry key=\"app/src/main/res/layout-land/activity_main.xml\" value=\"0.12604166666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_edit_tutor_page.xml\" value=\"0.3094916081082994\" />\r\n        <entry key=\"app/src/main/res/layout/activity_login_page.xml\" value=\"0.27322794596354166\" />\r\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.19635416666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_signup_page.xml\" value=\"0.19635416666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_tutor_page.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/activity_tutor_pay.xml\" value=\"0.2545289855072464\" />\r\n        <entry key=\"app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.28804347826086957\" />\r\n        <entry key=\"app/src/main/res/layout/student_page_fragment.xml\" value=\"0.18020833333333333\" />\r\n        <entry key=\"app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.2931747436523438\" />\r\n        <entry key=\"app/src/main/res/menu/bottom_nav.xml\" value=\"0.1\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/misc.xml b/.idea/misc.xml
+---- a/.idea/misc.xml	(revision b0f85bf7c81368b242ef287bcb8fcc98df724e19)
+-+++ b/.idea/misc.xml	(date 1648600662332)
+-@@ -8,15 +8,19 @@
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml" value="0.2535" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/home.xml" value="0.2535" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2535" />
+-+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/spinner_item.xml" value="0.286" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/text_field_bg.xml" value="0.2535" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml" value="0.30687830687830686" />
+-+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_tutor_page.xml" value="0.346875" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.33" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+-+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main_tutor.xml" value="0.346875" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml" value="0.33" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml" value="0.33" />
+--        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.18541666666666667" />
+--        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.18541666666666667" />
+-+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.33" />
+-+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.5" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml" value="0.3625" />
+-+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/spinner_item.xml" value="0.346875" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.33" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.33" />
+-         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.2765625" />
+-Index: app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package com.example.studenttutoring.calendarpage;\r\n\r\nimport androidx.lifecycle.ViewModelProvider;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Spinner;\r\n\r\nimport com.example.studenttutoring.MainActivity;\r\nimport com.example.studenttutoring.R;\r\n\r\npublic class CalendarPage extends Fragment {\r\n\r\n    private CalendarPageViewModel mViewModel;\r\n    private Spinner spinner;\r\n    public static CalendarPage newInstance() {\r\n        return new CalendarPage();\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,\r\n                             @Nullable Bundle savedInstanceState) {\r\n        View v = inflater.inflate(R.layout.calendar_page_fragment, container, false);\r\n        spinner = v.findViewById(R.id.subjects_spinner);\r\n        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.subject_array, android.R.layout.simple_spinner_item);\r\n        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        spinner.setAdapter(adapter);\r\n        return v;\r\n    }\r\n\r\n}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java b/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java
+---- a/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java	(revision b0f85bf7c81368b242ef287bcb8fcc98df724e19)
+-+++ b/app/src/main/java/com/example/studenttutoring/calendarpage/CalendarPage.java	(date 1648601927406)
+-@@ -2,6 +2,7 @@
+- 
+- import androidx.lifecycle.ViewModelProvider;
+- 
+-+import android.app.TimePickerDialog;
+- import android.os.Bundle;
+- 
+- import androidx.annotation.NonNull;
+-@@ -12,11 +13,15 @@
+- import android.view.View;
+- import android.view.ViewGroup;
+- import android.widget.ArrayAdapter;
+-+import android.widget.Button;
+- import android.widget.Spinner;
+-+import android.widget.TimePicker;
+- 
+- import com.example.studenttutoring.MainActivity;
+- import com.example.studenttutoring.R;
+- 
+-+import java.util.Locale;
+-+
+- public class CalendarPage extends Fragment {
+- 
+-     private CalendarPageViewModel mViewModel;
+-@@ -24,16 +29,39 @@
+-     public static CalendarPage newInstance() {
+-         return new CalendarPage();
+-     }
+--
+-+    Button timeButton;
+-+    int hour,minute;
+-     @Override
+-     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+-                              @Nullable Bundle savedInstanceState) {
+-         View v = inflater.inflate(R.layout.calendar_page_fragment, container, false);
+-         spinner = v.findViewById(R.id.subjects_spinner);
+--        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.subject_array, android.R.layout.simple_spinner_item);
+-+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.subject_array, R.layout.spinner_item);
+-         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+-         spinner.setAdapter(adapter);
+-+        timeButton = v.findViewById(R.id.startTimeButton);
+-+        timeButton.setOnClickListener(new View.OnClickListener(){
+-+            @Override
+-+            public void onClick(View view){
+-+                popTimePicker(view);
+-+            }
+-+        });
+-         return v;
+-+
+-+    }
+-+
+-+    public void popTimePicker(View view){
+-+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+-+            @Override
+-+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+-+                hour = selectedHour;
+-+                minute = selectedMinute;
+-+                timeButton.setText(String.format(Locale.getDefault(),"%02d:%02d %s",hour<13 ? hour==0 ? 12 : hour : hour - 12,minute,hour<12 ? "AM" : "PM"));
+-+            }
+-+        };
+-+        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),onTimeSetListener,hour,minute,false);
+-+        timePickerDialog.setTitle("Select Time");
+-+        timePickerDialog.show();
+-     }
+- 
+- }
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__8_05_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__8_05_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__8_05_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__8_05_PM__Default_Changelist_.xml	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ /dev/null	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_3_29_22,_8_05_PM_[Default_Changelist]" date="1648602364607" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_8_05_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 3/29/22, 8:05 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_6_37_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_6_37_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_6_37_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_6_37_PM_[Default_Changelist]/shelved.patch	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ /dev/null	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
+@@ -1,43 +0,0 @@
+-Index: app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java b/app/src/main/java/com/example/studenttutoring/EditTutorPage.java
+-rename from app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java
+-rename to app/src/main/java/com/example/studenttutoring/EditTutorPage.java
+---- a/app/src/main/java/com/example/studenttutoring/tutorpage/EditTutorPage.java	(revision 0967315ca6ceb9d4a7e3ac86ee951cd46e98976e)
+-+++ b/app/src/main/java/com/example/studenttutoring/EditTutorPage.java	(date 1648000580926)
+-@@ -1,4 +1,4 @@
+--package com.example.studenttutoring.tutorpage;
+-+package com.example.studenttutoring;
+- 
+- import androidx.appcompat.app.AppCompatActivity;
+- 
+-@@ -9,5 +9,6 @@
+-     @Override
+-     protected void onCreate(Bundle savedInstanceState) {
+-         super.onCreate(savedInstanceState);
+-+        setContentView(R.layout.activity_edit_tutor_page);
+-     }
+- }
+-\ No newline at end of file
+-Index: app/src/main/AndroidManifest.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"com.example.studenttutoring\">\n\n    <uses-permission android:name=\"android.permission.INTERNET\" />\n    <uses-permission android:name=\"android.permission.ACCESS.NETWORK.STATE\" />\n\n    <application\n        android:allowBackup=\"true\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.StudentTutoring\">\n        <activity\n            android:name=\".tutorpage.EditTutorPage\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".SignupPage\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".RatingsConfirmation\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".LoginPage\"\n            android:exported=\"true\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n        <activity\n            android:name=\".MainActivity\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".Ratings\"\n            android:exported=\"false\" />\n    </application>\n\n</manifest>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+---- a/app/src/main/AndroidManifest.xml	(revision 0967315ca6ceb9d4a7e3ac86ee951cd46e98976e)
+-+++ b/app/src/main/AndroidManifest.xml	(date 1648000580930)
+-@@ -13,7 +13,7 @@
+-         android:supportsRtl="true"
+-         android:theme="@style/Theme.StudentTutoring">
+-         <activity
+--            android:name=".tutorpage.EditTutorPage"
+-+            android:name=".EditTutorPage"
+-             android:exported="false" />
+-         <activity
+-             android:name=".SignupPage"
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__6_37_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__6_37_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__6_37_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__6_37_PM__Default_Changelist_.xml	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ /dev/null	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_3_29_22,_6_37_PM_[Default_Changelist]" date="1648597077124" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_6_37_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 3/29/22, 6:37 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_7_53_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_7_53_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_7_53_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_7_53_PM_[Default_Changelist]/shelved.patch	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ /dev/null	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
+@@ -1,46 +0,0 @@
+-Index: .idea/misc.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"DesignSurface\">\n    <option name=\"filePathToZoomLevelMap\">\n      <map>\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.37864583333333335\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/home.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/text_field_bg.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml\" value=\"0.30687830687830686\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.3625\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.18541666666666667\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.18541666666666667\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml\" value=\"0.3625\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_tutor_page.xml\" value=\"0.2765625\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.2765625\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.21422101449275363\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main_tutor.xml\" value=\"0.2765625\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.3582427536231884\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.2765625\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml\" value=\"0.3875\" />\n        <entry key=\"app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.2595\" />\n        <entry key=\"app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2595\" />\n        <entry key=\"app/src/main/res/layout-land/activity_main.xml\" value=\"0.12604166666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_edit_tutor_page.xml\" value=\"0.3094916081082994\" />\n        <entry key=\"app/src/main/res/layout/activity_login_page.xml\" value=\"0.27322794596354166\" />\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.19635416666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_signup_page.xml\" value=\"0.19635416666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_tutor_page.xml\" value=\"0.25\" />\n        <entry key=\"app/src/main/res/layout/activity_tutor_pay.xml\" value=\"0.2545289855072464\" />\n        <entry key=\"app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.28804347826086957\" />\n        <entry key=\"app/src/main/res/layout/student_page_fragment.xml\" value=\"0.18020833333333333\" />\n        <entry key=\"app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.2931747436523438\" />\n        <entry key=\"app/src/main/res/menu/bottom_nav.xml\" value=\"0.1\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/misc.xml b/.idea/misc.xml
+---- a/.idea/misc.xml	(revision c6668ced9182bed6bf4ee32218363ea43af0fec2)
+-+++ b/.idea/misc.xml	(date 1648600350310)
+-@@ -17,20 +17,28 @@
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.18541666666666667" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.18541666666666667" />
+-         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml" value="0.3625" />
+--        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.33" />
+--        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.33" />
+--        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_tutor_page.xml" value="0.2765625" />
+--        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.2765625" />
+-+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.18541666666666667" />
+-+        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.5" />
+-         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.21422101449275363" />
+--        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main_tutor.xml" value="0.2765625" />
+-         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml" value="0.3582427536231884" />
+--        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.2765625" />
+-         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.33" />
+-         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml" value="0.3875" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml" value="0.32760141093474426" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_tutor_page.xml" value="0.19947916666666668" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.38697916666666665" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.38697916666666665" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_main_tutor.xml" value="0.38697916666666665" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml" value="0.38697916666666665" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml" value="0.38697916666666665" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.38697916666666665" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.38697916666666665" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.38697916666666665" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.38697916666666665" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml" value="0.38697916666666665" />
+-+        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav_tutor.xml" value="0.38697916666666665" />
+-         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2595" />
+-         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
+-         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.12604166666666666" />
+--        <entry key="app/src/main/res/layout/activity_edit_tutor_page.xml" value="0.3094916081082994" />
+-         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.27322794596354166" />
+-         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
+-         <entry key="app/src/main/res/layout/activity_signup_page.xml" value="0.19635416666666666" />
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__7_53_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__7_53_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__7_53_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22__7_53_PM__Default_Changelist_.xml	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ /dev/null	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_3_29_22,_7_53_PM_[Default_Changelist]" date="1648601621308" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_7_53_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 3/29/22, 7:53 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_8_05_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_8_05_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_8_05_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_22,_8_05_PM_[Default_Changelist]/shelved.patch	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ /dev/null	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
+@@ -1,46 +0,0 @@
+-Index: app/src/main/res/layout/activity_edit_tutor_page.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/frameLayout2\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".tutorpage.TutorPage\">\n\n    <TextView\n        android:id=\"@+id/firstnameLabel\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"First Name\"\n        android:textStyle=\"bold\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.108\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.282\" />\n\n    <TextView\n        android:id=\"@+id/lastnameLabel\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"Last Name\"\n        android:textStyle=\"bold\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.107\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.361\" />\n\n    <TextView\n        android:id=\"@+id/contactLabel\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"@string/contact_number\"\n        android:textStyle=\"bold\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.119\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.522\" />\n\n    <TextView\n        android:id=\"@+id/contact_tutor\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:gravity=\"left\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.498\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.52\" />\n\n    <TextView\n        android:id=\"@+id/resumeLabel\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"@string/resume\"\n        android:textStyle=\"bold\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.102\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.614\" />\n\n    <TextView\n        android:id=\"@+id/firstname_tutor\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:gravity=\"left\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.498\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.28\" />\n\n    <TextView\n        android:id=\"@+id/lastname_tutor\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:gravity=\"left\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.498\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.359\" />\n\n    <TextView\n        android:id=\"@+id/emailLabel\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"@string/e_mail\"\n        android:textStyle=\"bold\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.099\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.438\" />\n\n    <TextView\n        android:id=\"@+id/email_tutor\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:textAlignment=\"textStart\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.498\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.436\" />\n\n    <androidx.constraintlayout.widget.Guideline\n        android:id=\"@+id/guideline2\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\"\n        app:layout_constraintGuide_begin=\"20dp\" />\n\n    <Button\n        android:id=\"@+id/save_button1\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"save\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.78\" />\n\n    <Button\n        android:id=\"@+id/upload_resume_button\"\n        android:layout_width=\"199dp\"\n        android:layout_height=\"42dp\"\n        android:text=\"upload file\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.924\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.622\" />\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/res/layout/activity_edit_tutor_page.xml b/app/src/main/res/layout/activity_edit_tutor_page.xml
+---- a/app/src/main/res/layout/activity_edit_tutor_page.xml	(revision 18ce4b8b3714cebf8b64ba58a27fbc0262c0aef2)
+-+++ b/app/src/main/res/layout/activity_edit_tutor_page.xml	(date 1648602357302)
+-@@ -132,6 +132,8 @@
+-         android:layout_width="wrap_content"
+-         android:layout_height="wrap_content"
+-         android:text="save"
+-+        android:fontFamily="@font/ralewayregular"
+-+        android:backgroundTint="#b23b3b"
+-         app:layout_constraintBottom_toBottomOf="parent"
+-         app:layout_constraintEnd_toEndOf="parent"
+-         app:layout_constraintStart_toStartOf="parent"
+-@@ -143,6 +145,8 @@
+-         android:layout_width="199dp"
+-         android:layout_height="42dp"
+-         android:text="upload file"
+-+        android:fontFamily="@font/ralewayregular"
+-+        android:backgroundTint="#3D3D3D"
+-         app:layout_constraintBottom_toBottomOf="parent"
+-         app:layout_constraintEnd_toEndOf="parent"
+-         app:layout_constraintHorizontal_bias="0.924"
+-Index: .idea/misc.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"DesignSurface\">\n    <option name=\"filePathToZoomLevelMap\">\n      <map>\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.37864583333333335\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/home.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/text_field_bg.xml\" value=\"0.2535\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml\" value=\"0.30687830687830686\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.3625\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.18541666666666667\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.18541666666666667\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml\" value=\"0.3625\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_tutor_page.xml\" value=\"0.2765625\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.2765625\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.21422101449275363\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main_tutor.xml\" value=\"0.2765625\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.3582427536231884\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.2765625\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.24909420289855072\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.33\" />\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml\" value=\"0.3875\" />\n        <entry key=\"app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.2595\" />\n        <entry key=\"app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2595\" />\n        <entry key=\"app/src/main/res/layout-land/activity_main.xml\" value=\"0.12604166666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_edit_tutor_page.xml\" value=\"0.3094916081082994\" />\n        <entry key=\"app/src/main/res/layout/activity_login_page.xml\" value=\"0.27322794596354166\" />\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.19635416666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_signup_page.xml\" value=\"0.19635416666666666\" />\n        <entry key=\"app/src/main/res/layout/activity_tutor_page.xml\" value=\"0.25\" />\n        <entry key=\"app/src/main/res/layout/activity_tutor_pay.xml\" value=\"0.2545289855072464\" />\n        <entry key=\"app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.28804347826086957\" />\n        <entry key=\"app/src/main/res/layout/student_page_fragment.xml\" value=\"0.18020833333333333\" />\n        <entry key=\"app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.2931747436523438\" />\n        <entry key=\"app/src/main/res/menu/bottom_nav.xml\" value=\"0.1\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/misc.xml b/.idea/misc.xml
+---- a/.idea/misc.xml	(revision 18ce4b8b3714cebf8b64ba58a27fbc0262c0aef2)
+-+++ b/.idea/misc.xml	(date 1648601621259)
+-@@ -25,7 +25,6 @@
+-         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main_tutor.xml" value="0.2765625" />
+-         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml" value="0.3582427536231884" />
+-         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.2765625" />
+--        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.24909420289855072" />
+-         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.33" />
+-         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml" value="0.3875" />
+-         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2595" />
+Index: app/src/main/java/com/example/studenttutoring/calendarpage/tutorEntry.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/studenttutoring/calendarpage/tutorEntry.java b/app/src/main/java/com/example/studenttutoring/calendarpage/tutorEntry.java
+new file mode 100644
+--- /dev/null	(date 1649808475970)
++++ b/app/src/main/java/com/example/studenttutoring/calendarpage/tutorEntry.java	(date 1649808475970)
+@@ -0,0 +1,16 @@
++package com.example.studenttutoring.calendarpage;
++
++public class tutorEntry {
++
++    private final String name;
++    private final String availability;
++    private final String contact_num;
++    private final String email;
++
++    tutorEntry(String name, String availability, String contact_num, String email){
++        this.name = name;
++        this.availability=availability;
++        this.contact_num=contact_num;
++        this.email=email;
++    }
++}
+Index: app/src/main/res/layout/calendar_page_fragment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/frameLayout\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".calendarpage.CalendarPage\">\r\n\r\n\r\n    <RelativeLayout\r\n        android:id=\"@+id/spinnerBg\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"100dp\"\r\n        android:layout_marginTop=\"40dp\"\r\n        android:layout_marginEnd=\"24dp\"\r\n        android:layout_weight=\".28\"\r\n        android:background=\"@drawable/calendar_spinner_bg\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView17\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView19\">\r\n\r\n        <Spinner\r\n            android:id=\"@+id/subjects_spinner\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_centerVertical=\"true\"\r\n            android:layout_gravity=\"center\"\r\n            android:layout_marginStart=\"5dp\"\r\n            android:background=\"@android:color/transparent\"\r\n            android:contentDescription='@string/sub_spinner'\r\n            android:dropDownWidth=\"wrap_content\"\r\n            android:gravity=\"center\"\r\n            android:spinnerMode=\"dropdown\"\r\n            android:visibility=\"visible\" />\r\n\r\n        <ImageView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_alignParentEnd=\"true\"\r\n            android:layout_centerVertical=\"true\"\r\n            android:layout_gravity=\"center\"\r\n            android:contentDescription=\"Subjects\"\r\n            android:src=\"@drawable/spinner_dropdown\" />\r\n\r\n    </RelativeLayout>\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView17\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:fontFamily=\"@font/ralewaybold\"\r\n        android:text=\"Subject:\"\r\n        android:textColor=\"#3D3D3D\"\r\n        android:textSize=\"16dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/spinnerBg\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/spinnerBg\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/startTimeTextView\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"40dp\"\r\n        android:fontFamily=\"@font/ralewaybold\"\r\n        android:text=\"Start Time:\"\r\n        android:textColor=\"#3D3D3D\"\r\n        android:textSize=\"16dp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView17\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/startTimeTextView2\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:fontFamily=\"@font/ralewaybold\"\r\n        android:text=\"End Time:\"\r\n        android:textColor=\"#3D3D3D\"\r\n        android:textSize=\"16dp\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/endTimeButton\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/startTimeTextView\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView19\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:fontFamily=\"@font/ralewayblack\"\r\n        android:text=\"Tutor Search\"\r\n        android:textColor=\"#3D3D3D\"\r\n        android:textSize=\"32dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/startTimeButton\"\r\n        android:layout_width=\"100dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:backgroundTint=\"#3D3D3D\"\r\n        android:fontFamily=\"@font/ralewayregular\"\r\n        android:paddingStart=\"0dp\"\r\n        android:paddingEnd=\"0dp\"\r\n        android:text=\"Select\\nTime\"\r\n        android:textSize=\"12dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/startTimeTextView\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/startTimeTextView\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/startTimeTextView\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/endTimeButton\"\r\n        android:layout_width=\"100dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:backgroundTint=\"#3d3d3d\"\r\n        android:fontFamily=\"@font/ralewayregular\"\r\n        android:text=\"Select\\nTime\"\r\n        android:textSize=\"12dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/startTimeTextView2\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/startTimeTextView2\" />\r\n\r\n    <CalendarView\r\n        android:id=\"@+id/calendarView\"\r\n        android:layout_width=\"270dp\"\r\n        android:layout_height=\"303dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/startTimeButton\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/calendar_page_fragment.xml b/app/src/main/res/layout/calendar_page_fragment.xml
+--- a/app/src/main/res/layout/calendar_page_fragment.xml	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ b/app/src/main/res/layout/calendar_page_fragment.xml	(date 1649806731895)
+@@ -13,7 +13,7 @@
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="100dp"
+-        android:layout_marginTop="40dp"
++        android:layout_marginTop="32dp"
+         android:layout_marginEnd="24dp"
+         android:layout_weight=".28"
+         android:background="@drawable/calendar_spinner_bg"
+@@ -66,7 +66,7 @@
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+-        android:layout_marginTop="40dp"
++        android:layout_marginTop="32dp"
+         android:fontFamily="@font/ralewaybold"
+         android:text="Start Time:"
+         android:textColor="#3D3D3D"
+@@ -114,6 +114,23 @@
+         app:layout_constraintStart_toEndOf="@+id/startTimeTextView"
+         app:layout_constraintTop_toTopOf="@+id/startTimeTextView" />
+ 
++    <Button
++        android:id="@+id/searchButton"
++        android:layout_width="150dp"
++        android:layout_height="50dp"
++        android:layout_marginStart="48dp"
++        android:layout_marginTop="8dp"
++        android:layout_marginEnd="48dp"
++        android:backgroundTint="#3D3D3D"
++        android:fontFamily="@font/ralewayregular"
++        android:paddingStart="0dp"
++        android:paddingEnd="0dp"
++        android:text="SEARCH"
++        android:textSize="20dp"
++        app:layout_constraintEnd_toEndOf="@+id/calendarView"
++        app:layout_constraintStart_toStartOf="@+id/calendarView"
++        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
++
+     <Button
+         android:id="@+id/endTimeButton"
+         android:layout_width="100dp"
+@@ -129,8 +146,8 @@
+ 
+     <CalendarView
+         android:id="@+id/calendarView"
+-        android:layout_width="270dp"
+-        android:layout_height="303dp"
++        android:layout_width="350dp"
++        android:layout_height="300dp"
+         android:layout_marginTop="8dp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.37864583333333335\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/home.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/text_field_bg.xml\" value=\"0.2535\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml\" value=\"0.30687830687830686\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.3625\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml\" value=\"0.3625\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.18541666666666667\" />\r\n        <entry key=\"..\\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.5\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.21422101449275363\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.3582427536231884\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml\" value=\"0.3875\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml\" value=\"0.32760141093474426\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_tutor_page.xml\" value=\"0.19947916666666668\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml\" value=\"0.38697916666666665\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml\" value=\"0.38697916666666665\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_main_tutor.xml\" value=\"0.38697916666666665\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml\" value=\"0.38697916666666665\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml\" value=\"0.38697916666666665\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.38697916666666665\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.38697916666666665\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml\" value=\"0.38697916666666665\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.38697916666666665\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml\" value=\"0.38697916666666665\" />\r\n        <entry key=\"..\\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav_tutor.xml\" value=\"0.38697916666666665\" />\r\n        <entry key=\"app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.2595\" />\r\n        <entry key=\"app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.2595\" />\r\n        <entry key=\"app/src/main/res/layout-land/activity_main.xml\" value=\"0.12604166666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_login_page.xml\" value=\"0.27322794596354166\" />\r\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.19635416666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_signup_page.xml\" value=\"0.19635416666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_tutor_page.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/activity_tutor_pay.xml\" value=\"0.2545289855072464\" />\r\n        <entry key=\"app/src/main/res/layout/calendar_page_fragment.xml\" value=\"0.28804347826086957\" />\r\n        <entry key=\"app/src/main/res/layout/student_page_fragment.xml\" value=\"0.18020833333333333\" />\r\n        <entry key=\"app/src/main/res/layout/tutor_page_fragment.xml\" value=\"0.2931747436523438\" />\r\n        <entry key=\"app/src/main/res/menu/bottom_nav.xml\" value=\"0.1\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ b/.idea/misc.xml	(date 1649206347750)
+@@ -8,37 +8,34 @@
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/calendar_spinner_bg.xml" value="0.2535" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/home.xml" value="0.2535" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2535" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/spinner_item.xml" value="0.286" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/drawable/text_field_bg.xml" value="0.2535" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml" value="0.30687830687830686" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_display_ratings.xml" value="0.33" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_student_page.xml" value="0.3625" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_tutor_page.xml" value="0.346875" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.33" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.3625" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main_tutor.xml" value="0.346875" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml" value="0.33" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml" value="0.33" />
+-        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.18541666666666667" />
+-        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.18541666666666667" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.33" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_tutor_availability.xml" value="0.3625" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.33" />
+         <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/calender_page_spinner.xml" value="0.3625" />
+-        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.18541666666666667" />
+-        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.5" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/spinner_item.xml" value="0.346875" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.33" />
++        <entry key="..\:/Repositories/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.33" />
++        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.2765625" />
+         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.21422101449275363" />
+         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml" value="0.3582427536231884" />
++        <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.2765625" />
+         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.33" />
+         <entry key="..\:/School/Spring-2022/ipro-497/ipro-497-git/student-tutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml" value="0.3875" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout-land/activity_main.xml" value="0.32760141093474426" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_edit_tutor_page.xml" value="0.19947916666666668" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_login_page.xml" value="0.38697916666666665" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_main.xml" value="0.38697916666666665" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_main_tutor.xml" value="0.38697916666666665" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings.xml" value="0.38697916666666665" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_ratings_confirmation.xml" value="0.38697916666666665" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/activity_signup_page.xml" value="0.38697916666666665" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/calendar_page_fragment.xml" value="0.38697916666666665" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/student_page_fragment.xml" value="0.38697916666666665" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/layout/tutor_page_fragment.xml" value="0.38697916666666665" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav.xml" value="0.38697916666666665" />
+-        <entry key="..\:/Users/PC/AndroidStudioProjects/StudentTutoring/StudentTutoringApp/app/src/main/res/menu/bottom_nav_tutor.xml" value="0.38697916666666665" />
+         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2595" />
+         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
+         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.12604166666666666" />
++        <entry key="app/src/main/res/layout/activity_edit_tutor_page.xml" value="0.3094916081082994" />
+         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.27322794596354166" />
+         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
+         <entry key="app/src/main/res/layout/activity_signup_page.xml" value="0.19635416666666666" />
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"GRADLE\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleJvm\" value=\"JDK\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n          </set>\r\n        </option>\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision fe1ee14ed493430effb6ac1acd5e70f2cbec5677)
++++ b/.idea/gradle.xml	(date 1649806299315)
+@@ -7,13 +7,14 @@
+         <option name="testRunner" value="GRADLE" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+-        <option name="gradleJvm" value="JDK" />
++        <option name="gradleJvm" value="11" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$" />
+             <option value="$PROJECT_DIR$/app" />
+           </set>
+         </option>
++        <option name="resolveModulePerSourceSet" value="false" />
+       </GradleProjectSettings>
+     </option>
+   </component>

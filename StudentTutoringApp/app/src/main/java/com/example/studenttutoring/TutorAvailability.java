@@ -19,6 +19,8 @@ import com.example.studenttutoring.tutorpage.TutorPage;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class TutorAvailability extends AppCompatActivity {
@@ -26,7 +28,8 @@ public class TutorAvailability extends AppCompatActivity {
     private Button cancel_button, submit_button, start_time, end_time;
     private Spinner spinner, spinner2;
     private int sHour, sMinute, eHour, eMinute;
-    private String startTime, endTime;
+    private LocalTime startTime, endTime;
+    private static final String TAG = "TutorAvailability";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,18 +77,19 @@ public class TutorAvailability extends AppCompatActivity {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("h:mm a");
                 switch(v.getId()) {
                     case R.id.start_time:
                         sHour = selectedHour;
                         sMinute = selectedMinute;
-                        startTime = String.format(Locale.getDefault(), "%02d:%02d %s", sHour < 13 ? sHour == 0 ? 12 : sHour : sHour - 12, sMinute, sHour < 12 ? "AM" : "PM");
-                        start_time.setText(startTime);
+                        startTime = LocalTime.of(sHour,sMinute);
+                        start_time.setText(startTime.format(dtf));
                         break;
                     case R.id.end_time:
                         eHour = selectedHour;
                         eMinute = selectedMinute;
-                        endTime = String.format(Locale.getDefault(), "%02d:%02d %s", eHour < 13 ? eHour == 0 ? 12 : eHour : eHour - 12, eMinute, eHour < 12 ? "AM" : "PM");
-                        end_time.setText(endTime);
+                        endTime = LocalTime.of(eHour,eMinute);
+                        end_time.setText(endTime.format(dtf));
                         break;
                 }
             }
@@ -105,9 +109,8 @@ public class TutorAvailability extends AppCompatActivity {
         timePickerDialog.show();
     }
 
-
     public void submit() {
-       if(startTime.isEmpty() || endTime.isEmpty()) {
+       if(startTime == null || endTime == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Must select start and end times");
 
@@ -120,19 +123,19 @@ public class TutorAvailability extends AppCompatActivity {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connectionclass();
             if(connect!=null){
-                String query = String.format("INSERT INTO `SCHEDULE`(`tutor`, `subject`, `start_time`, `end_time`, `dayofweek`) " +
-                                "VALUES ('%1$s','%2$s','%3$s','%4$s','%5$s')", spinner.getSelectedItem().toString(), startTime, endTime, spinner2.getSelectedItemPosition());
+                int weekday = spinner2.getSelectedItemPosition() + 1;
+                String query = String.format("INSERT INTO `SCHEDULE` (`tutor`, `subject`, `start_time`, `end_time`, `dayofweek`) " +
+                                "VALUES ('%1$s','%2$s','%3$s','%4$s','%5$s')", LoginPage.userID, spinner.getSelectedItem().toString(), startTime, endTime, weekday);
                 Statement st = connect.createStatement();
-                ResultSet rs = st.executeQuery(query);
-                while(rs.next()){
-                    //then you use rs.get**** for whatever you want ie rs.getString("Username");
-                }
+                Log.d(TAG, "submit: query created");
+                st.executeUpdate(query);
+                Log.d(TAG, "submit: executed update");
             }
         }
         catch (Exception ex) {
             Log.e("Error",ex.getMessage());
         }
-        Intent intent = new Intent(this, LoginPage.class); //source, destination
+        Intent intent = new Intent(this, MainActivityTutor.class); //source, destination
         startActivity(intent);
         finish();
     }

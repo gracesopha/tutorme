@@ -65,10 +65,7 @@ public class SignupPage extends AppCompatActivity {
                         "VALUES ('%1$s','%2$s','%3$s','%4$s','%5$s', '%6$s')", userEmail.getText().toString(), userPass.getText().toString(), firstName.getText().toString(),
                         lastName.getText().toString(), userPhone.getText().toString(), yesTutor);
                 Statement st = connect.createStatement();
-                ResultSet rs = st.executeQuery(query);
-                while(rs.next()){
-                    //then you use rs.get**** for whatever you want ie rs.getString("Username");
-                }
+                st.executeQuery(query);
             }
         }
         catch (Exception ex) {
