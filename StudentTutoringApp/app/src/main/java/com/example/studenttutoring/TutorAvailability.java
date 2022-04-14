@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +16,9 @@ import android.widget.TimePicker;
 
 import com.example.studenttutoring.tutorpage.TutorPage;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Locale;
 
 public class TutorAvailability extends AppCompatActivity {
@@ -22,6 +26,7 @@ public class TutorAvailability extends AppCompatActivity {
     private Button cancel_button, submit_button, start_time, end_time;
     private Spinner spinner, spinner2;
     private int sHour, sMinute, eHour, eMinute;
+    private String startTime, endTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +64,7 @@ public class TutorAvailability extends AppCompatActivity {
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivityTutor.class); //source, destination
-                startActivity(intent);
-                finish();
+                submit();
             }
         });
 
@@ -75,12 +78,14 @@ public class TutorAvailability extends AppCompatActivity {
                     case R.id.start_time:
                         sHour = selectedHour;
                         sMinute = selectedMinute;
-                        start_time.setText(String.format(Locale.getDefault(), "%02d:%02d %s", sHour < 13 ? sHour == 0 ? 12 : sHour : sHour - 12, sMinute, sHour < 12 ? "AM" : "PM"));
+                        startTime = String.format(Locale.getDefault(), "%02d:%02d %s", sHour < 13 ? sHour == 0 ? 12 : sHour : sHour - 12, sMinute, sHour < 12 ? "AM" : "PM");
+                        start_time.setText(startTime);
                         break;
                     case R.id.end_time:
                         eHour = selectedHour;
                         eMinute = selectedMinute;
-                        end_time.setText(String.format(Locale.getDefault(), "%02d:%02d %s", eHour < 13 ? eHour == 0 ? 12 : eHour : eHour - 12, eMinute, eHour < 12 ? "AM" : "PM"));
+                        endTime = String.format(Locale.getDefault(), "%02d:%02d %s", eHour < 13 ? eHour == 0 ? 12 : eHour : eHour - 12, eMinute, eHour < 12 ? "AM" : "PM");
+                        end_time.setText(endTime);
                         break;
                 }
             }
@@ -98,5 +103,37 @@ public class TutorAvailability extends AppCompatActivity {
         }
         timePickerDialog.setTitle("Select Time");
         timePickerDialog.show();
+    }
+
+
+    public void submit() {
+       if(startTime.isEmpty() || endTime.isEmpty()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Must select start and end times");
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            return;
+        }
+        Connection connect;
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connectionclass();
+            if(connect!=null){
+                String query = String.format("INSERT INTO `SCHEDULE`(`tutor`, `subject`, `start_time`, `end_time`, `dayofweek`) " +
+                                "VALUES ('%1$s','%2$s','%3$s','%4$s','%5$s')", spinner.getSelectedItem().toString(), startTime, endTime, spinner2.getSelectedItemPosition());
+                Statement st = connect.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                while(rs.next()){
+                    //then you use rs.get**** for whatever you want ie rs.getString("Username");
+                }
+            }
+        }
+        catch (Exception ex) {
+            Log.e("Error",ex.getMessage());
+        }
+        Intent intent = new Intent(this, LoginPage.class); //source, destination
+        startActivity(intent);
+        finish();
     }
 }
