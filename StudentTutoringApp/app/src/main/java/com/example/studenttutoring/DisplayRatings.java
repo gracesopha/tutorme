@@ -56,7 +56,7 @@ public class DisplayRatings extends AppCompatActivity {
                     //Log.v("connection test:",name);
                     //Log.v("connection test:",String.valueOf(rating));
                     rating *= 100;
-                    ratings.append(String.format("%-15s %15.0f%% %n%n%n", name, rating));
+                    ratings.append(String.format("%-15s %45.0f%% %n%n%n", name, rating));
                 }
                 ratings.setMovementMethod(new ScrollingMovementMethod());
             }

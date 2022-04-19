@@ -31,6 +31,7 @@ public class LoginPage extends AppCompatActivity {
     private Connection connect;
     private static final String TAG = "LoginPage";
     public static String userEmail = "";
+    public static String userID = "";
 
     public static void main (String[] args) {
         new LoginPage();
@@ -64,12 +65,8 @@ public class LoginPage extends AppCompatActivity {
                         } else {
                             String accType = "0";
                             userEmail = pulledEmail;
-                            String query2 = String.format("SELECT type FROM LOGIN_ACCT where (email='%1$s') AND (password='%2$s');", pulledEmail, pulledPass);//Insert Query here
-                            Log.d(TAG, "onClick: "+query2);
-                            ResultSet rs2 = st.executeQuery(query2);
-                            while (rs2.next()) {
-                                accType = rs2.getString(1);
-                            }
+                            userID = rs.getString("userid");
+                            accType = rs.getString("type");
                             Log.d(TAG, "onClick: return student type" + accType);
                             if (accType.equals("0")) {
                                 Intent intent1 = new Intent(LoginPage.this, MainActivity.class);

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingTop="0dp"
+    android:paddingRight="0dp"
+    android:paddingBottom="0dp">
+
+    <TextView
+        android:id="@+id/tutor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/ralewaybold"
+        android:textSize="32dp"
+        tools:text="Jane Doe" />
+
+    <TextView
+        android:id="@+id/tutor_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/avail"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/avail"
+        android:fontFamily="@font/ralewaylight"
+        tools:text="9:00 AM" />
+
+    <TextView
+        android:id="@+id/tutor_end_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tutor_start_time"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/avail2"
+        android:fontFamily="@font/ralewaylight"
+        tools:text="5:00 PM" />
+
+    <TextView
+        android:id="@+id/tutor_contact_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tutor_end_time"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/ralewaylight"
+        tools:text="(xxx) xxx-xxxx" />
+
+    <TextView
+        android:id="@+id/tutor_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tutor_name"
+        android:layout_alignBottom="@+id/tutor_name"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/ralewaylight"
+        tools:text="jdoe@gmail.com" />
+
+    <TextView
+        android:id="@+id/avail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tutor_name"
+        android:layout_alignStart="@+id/tutor_name"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/ralewaylight"
+        android:text="Available from: " />
+
+    <TextView
+        android:id="@+id/avail2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tutor_start_time"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/tutor_start_time"
+        android:fontFamily="@font/ralewaylight"
+        android:text="to" />
+
+
+</RelativeLayout>

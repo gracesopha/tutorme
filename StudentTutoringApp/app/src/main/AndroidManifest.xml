@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentTutoring">
         <activity
+            android:name=".calendarpage.TutorSearchResults"
+            android:exported="false" />
+        <activity
             android:name=".EditStudentPage"
             android:exported="false" />
         <activity
