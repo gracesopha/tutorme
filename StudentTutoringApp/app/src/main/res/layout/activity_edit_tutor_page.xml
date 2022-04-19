@@ -37,37 +37,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="136dp"
         android:fontFamily="@font/ralewayregular"
         android:text="@string/contact_number"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/resumeLabel"
+        app:layout_constraintBottom_toTopOf="@+id/save_button"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/contact_tutor"
-        android:fontFamily="@font/ralewayregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="27dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="124dp"
+        android:fontFamily="@font/ralewayregular"
         android:gravity="left"
-        app:layout_constraintBottom_toTopOf="@+id/upload_resume_button"
+        app:layout_constraintBottom_toTopOf="@+id/save_button"
         app:layout_constraintStart_toEndOf="@+id/contactLabel" />
-
-    <TextView
-        android:id="@+id/resumeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/ralewayregular"
-        android:text="@string/resume"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.614" />
 
     <EditText
         android:id="@+id/firstname_tutor"
@@ -113,19 +99,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.78" />
-
-    <Button
-        android:id="@+id/upload_resume_button"
-        android:layout_width="199dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#3D3D3D"
-        android:text="upload file"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.924"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.622" />
 
     <TextView
         android:id="@+id/textView10"
