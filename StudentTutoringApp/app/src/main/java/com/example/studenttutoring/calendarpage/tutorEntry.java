@@ -17,7 +17,7 @@ public class tutorEntry implements Serializable {
     }
 
     public String getContact_num() {
-        return contact_num;
+        return contact_num.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
     }
 
     public String getEmail() {
